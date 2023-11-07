@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "E6LkaDs2mjN5ZwSYmUXfwJJzBU02BMuGN11yz+Z3LWw=",
+  "Source": "LaboratoryApi",
+  "BasePath": "_content/LaboratoryApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

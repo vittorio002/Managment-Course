@@ -1,0 +1,26 @@
+[
+  {
+    "Email": "triolovi@gmail.com",
+    "Name": "Vittorio",
+    "timeWork": 0,
+    "reservation": null,
+    "admin": false,
+    "labManager": false
+  },
+  {
+    "Email": "Leonardi@gmail.com",
+    "Name": "Andrea",
+    "timeWork": 0,
+    "reservation": null,
+    "admin": false,
+    "labManager": false
+  },
+  {
+    "Email": "Zappala@gmail.com",
+    "Name": "Claudio",
+    "timeWork": 0,
+    "reservation": null,
+    "admin": false,
+    "labManager": false
+  }
+]
