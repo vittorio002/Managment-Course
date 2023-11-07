@@ -120,6 +120,16 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "Json/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Json.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Json.dll": {}
+        }
       }
     }
   },
@@ -503,10 +513,16 @@
         "swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "Json/1.0.0": {
+      "type": "project",
+      "path": "../Json/Json.csproj",
+      "msbuildProject": "../Json/Json.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Json >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.11",
       "Newtonsoft.Json >= 13.0.3",
       "Swashbuckle.AspNetCore >= 6.5.0"
@@ -544,7 +560,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Json\\Json.csproj": {
+              "projectPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Json\\Json.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

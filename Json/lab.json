@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "Name": "Lab1",
+    "computers": [
+      { "Name": "PC1", "Id": "1638151614", "program": ["Visual Studio Code"] }
+    ]
+  }
+]

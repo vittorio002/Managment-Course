@@ -1,17 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "73AY/wyayi9y2XXGV8Dagw6dC9eGiFidkpOYihheb1optsAymhnKSbkQpQz3fw/u13kkWeKtoVFHreRwcpXn8g==",
+  "dgSpecHash": "WOx9861ZmUh2RAu8OLUep0DIjT7SNwIGqGCLj9Lf2sLCqhP2HuXfdTlGEt17QifQ/Mv/SBO3qP+WED0fPeGPOw==",
   "success": true,
   "projectFilePath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Json\\Json.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\FMF-Guest\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.11\\microsoft.aspnetcore.openapi.7.0.11.nupkg.sha512",
-    "C:\\Users\\FMF-Guest\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
-    "C:\\Users\\FMF-Guest\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
-    "C:\\Users\\FMF-Guest\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
-    "C:\\Users\\FMF-Guest\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
-    "C:\\Users\\FMF-Guest\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
-    "C:\\Users\\FMF-Guest\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
-    "C:\\Users\\FMF-Guest\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

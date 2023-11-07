@@ -8,6 +8,7 @@ namespace LaboratoryApi.Controllers
     public class LabController : ControllerBase
     {
         private static List<Lab> _labs = new List<Lab>();
+
         public void DeserializeFile(string json) // Read the file and write in the Dictionaries
         {
             try

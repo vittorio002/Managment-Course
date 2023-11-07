@@ -120,6 +120,48 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "Json/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Json.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Json.dll": {}
+        }
+      },
+      "LaboratoryApi/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Json": "1.0.0",
+          "Microsoft.AspNetCore.OpenApi": "7.0.11",
+          "Newtonsoft.Json": "13.0.3",
+          "Swashbuckle.AspNetCore": "6.5.0"
+        },
+        "compile": {
+          "bin/placeholder/LaboratoryApi.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LaboratoryApi.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Reservation/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "LaboratoryApi": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Reservation.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Reservation.dll": {}
+        }
       }
     }
   },
@@ -503,12 +545,29 @@
         "swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "Json/1.0.0": {
+      "type": "project",
+      "path": "../Json/Json.csproj",
+      "msbuildProject": "../Json/Json.csproj"
+    },
+    "LaboratoryApi/1.0.0": {
+      "type": "project",
+      "path": "../LaboratoryApi/LaboratoryApi.csproj",
+      "msbuildProject": "../LaboratoryApi/LaboratoryApi.csproj"
+    },
+    "Reservation/1.0.0": {
+      "type": "project",
+      "path": "../Reservation/Reservation.csproj",
+      "msbuildProject": "../Reservation/Reservation.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Json >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.11",
       "Newtonsoft.Json >= 13.0.3",
+      "Reservation >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
@@ -544,7 +603,14 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Json\\Json.csproj": {
+              "projectPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Json\\Json.csproj"
+            },
+            "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Reservation\\Reservation.csproj": {
+              "projectPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Reservation\\Reservation.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

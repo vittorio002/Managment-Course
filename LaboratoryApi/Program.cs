@@ -1,3 +1,5 @@
+using Json;
+using LaboratoryApi.Controllers;
 internal class Program
 {
     private static void Main(string[] args)
@@ -24,6 +26,15 @@ internal class Program
 
         app.MapControllers();
 
+        RunJson json = new RunJson();
+        LabController l = new LabController();
+
+        string j = json.ReadLabFile();
+        l.DeserializeFile(j);
+        
         app.Run();
+
+        j = l.SerializeFile();
+        json.WriteLabFile(j);
     }
 }

@@ -1,3 +1,4 @@
+using Reservations;
 namespace UserApi
 {
     public class User
@@ -7,7 +8,7 @@ namespace UserApi
         private string Password { get; set; }
         private Random NONCE {get;set;}
         public int timeWork {get;set;}
-        public List<DateTime> reservation {get;set;}
+        public List<Reservation> Reservations {get;set;}
         public bool admin {get;set;}
         public bool labManager {get;set;}
         public User(string email, string name, string password)
@@ -17,6 +18,7 @@ namespace UserApi
             Password = password;
             NONCE = new Random();
             timeWork = 0;
+            this.Reservations = new List<Reservation>();
             admin = false;
             labManager = false;
         }

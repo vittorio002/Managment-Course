@@ -6,6 +6,7 @@ namespace LaboratoryApi
         public List<Computer> computers {get;set;}
         public Lab(string name){
             Name = name;
+            computers = new List<Computer>();
         }
     }
 }
