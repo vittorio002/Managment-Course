@@ -9,8 +9,7 @@ namespace UserApi
         private Random NONCE {get;set;}
         public int timeWork {get;set;}
         public List<Reservation> Reservations {get;set;}
-        public bool admin {get;set;}
-        public bool labManager {get;set;}
+        public List<string> role {get;set;}
         public User(string email, string name, string password)
         {
             Email = email;
@@ -19,8 +18,7 @@ namespace UserApi
             NONCE = new Random();
             timeWork = 0;
             this.Reservations = new List<Reservation>();
-            admin = false;
-            labManager = false;
+            role = new List<string>();
         }
 
         public Random GetNONCE(){
