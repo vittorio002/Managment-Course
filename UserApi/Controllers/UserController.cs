@@ -73,32 +73,5 @@ namespace UserApi.Controllers
                 return NoContent();
             }
         }   
-        public void DeserializeFile(string json) // Read the file and write in the Dictionaries
-        {
-            try
-            {
-                _users = JsonConvert.DeserializeObject<List<User>>(json);
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Errore durante la lettura dei file: " + ex.Message);
-            }
-        }
-
-        public string SerializeFile() // Write the file with the Sictionaries
-        {
-            try
-            {
-                string json = JsonConvert.SerializeObject(_users);
-
-                return (json);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Errore durante la scrittura dei file: " + ex.Message);
-                return null;
-            }
-        }
     }
 }

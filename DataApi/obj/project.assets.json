@@ -120,16 +120,6 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
-      },
-      "Json/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "compile": {
-          "bin/placeholder/Json.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Json.dll": {}
-        }
       }
     }
   },
@@ -513,16 +503,10 @@
         "swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
-    },
-    "Json/1.0.0": {
-      "type": "project",
-      "path": "../Json/Json.csproj",
-      "msbuildProject": "../Json/Json.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "Json >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.11",
       "Newtonsoft.Json >= 13.0.3",
       "Swashbuckle.AspNetCore >= 6.5.0"
@@ -534,11 +518,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\LaboratoryApi\\LaboratoryApi.csproj",
-      "projectName": "LaboratoryApi",
-      "projectPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\LaboratoryApi\\LaboratoryApi.csproj",
+      "projectUniqueName": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\DataApi\\Data.csproj",
+      "projectName": "Data",
+      "projectPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\DataApi\\Data.csproj",
       "packagesPath": "C:\\Users\\Vittorio\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\LaboratoryApi\\obj\\",
+      "outputPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\DataApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Vittorio\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -552,11 +536,7 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {
-            "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Json\\Json.csproj": {
-              "projectPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Json\\Json.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
