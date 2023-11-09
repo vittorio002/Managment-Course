@@ -1,222 +1,38 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vittorio\\AppData\\Managment-Course\\UserApi\\UserApi.csproj": {}
+    "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\UserApi\\UserApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Json\\Json.csproj": {
+    "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\UserApi\\UserApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Json\\Json.csproj",
-        "projectName": "Json",
-        "projectPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Json\\Json.csproj",
-        "packagesPath": "C:\\Users\\Vittorio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Json\\obj\\",
+        "projectUniqueName": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\UserApi\\UserApi.csproj",
+        "projectName": "UserApi",
+        "projectPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\UserApi\\UserApi.csproj",
+        "packagesPath": "C:\\Users\\FMF-Guest\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\UserApi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Vittorio\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\FMF-Guest\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\Vittorio\\AppData\\Managment-Course\\LaboratoryApi\\LaboratoryApi.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\LaboratoryApi\\LaboratoryApi.csproj",
-        "projectName": "LaboratoryApi",
-        "projectPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\LaboratoryApi\\LaboratoryApi.csproj",
-        "packagesPath": "C:\\Users\\Vittorio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\LaboratoryApi\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Vittorio\\AppData\\Roaming\\NuGet\\NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net7.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
-            "projectReferences": {
-              "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Json\\Json.csproj": {
-                "projectPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Json\\Json.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
-          "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
-              "target": "Package",
-              "version": "[7.0.11, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.3, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[6.5.0, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Reservation\\Reservation.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Reservation\\Reservation.csproj",
-        "projectName": "Reservation",
-        "projectPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Reservation\\Reservation.csproj",
-        "packagesPath": "C:\\Users\\Vittorio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Reservation\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Vittorio\\AppData\\Roaming\\NuGet\\NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net7.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
-            "projectReferences": {
-              "C:\\Users\\Vittorio\\AppData\\Managment-Course\\LaboratoryApi\\LaboratoryApi.csproj": {
-                "projectPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\LaboratoryApi\\LaboratoryApi.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\Vittorio\\AppData\\Managment-Course\\UserApi\\UserApi.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\UserApi\\UserApi.csproj",
-        "projectName": "UserApi",
-        "projectPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\UserApi\\UserApi.csproj",
-        "packagesPath": "C:\\Users\\Vittorio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\UserApi\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Vittorio\\AppData\\Roaming\\NuGet\\NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net7.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
-            "projectReferences": {
-              "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Json\\Json.csproj": {
-                "projectPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Json\\Json.csproj"
-              },
-              "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Reservation\\Reservation.csproj": {
-                "projectPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Reservation\\Reservation.csproj"
-              }
-            }
           }
         },
         "warningProperties": {

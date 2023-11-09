@@ -17,7 +17,6 @@ namespace LaboratoryApi
             for(int i = 0; i < 10; i++){
             Random IdR = new Random();
             int o = IdR.Next(0, 10);
-            Console.WriteLine(o);
             id += o;
             }
             return id;

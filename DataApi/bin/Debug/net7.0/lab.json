@@ -1,0 +1,6 @@
+[
+  {
+    "Name": "string",
+    "computers": [{ "Name": "string", "Id": "string", "program": ["string"] }]
+  }
+]

@@ -32,5 +32,3 @@ C:\Users\FMF-Guest\AppData\Managment-Cours\UserApi\obj\Debug\net7.0\UserApi.pdb
 C:\Users\FMF-Guest\AppData\Managment-Cours\UserApi\obj\Debug\net7.0\UserApi.genruntimeconfig.cache
 C:\Users\FMF-Guest\AppData\Managment-Cours\UserApi\obj\Debug\net7.0\ref\UserApi.dll
 C:\Users\FMF-Guest\AppData\Managment-Cours\UserApi\bin\Debug\net7.0\Newtonsoft.Json.dll
-C:\Users\FMF-Guest\AppData\Managment-Cours\UserApi\bin\Debug\net7.0\Json.dll
-C:\Users\FMF-Guest\AppData\Managment-Cours\UserApi\bin\Debug\net7.0\Json.pdb

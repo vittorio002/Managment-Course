@@ -32,5 +32,3 @@ C:\Users\FMF-Guest\AppData\Managment-Cours\LaboratoryApi\obj\Debug\net7.0\Labora
 C:\Users\FMF-Guest\AppData\Managment-Cours\LaboratoryApi\obj\Debug\net7.0\LaboratoryApi.genruntimeconfig.cache
 C:\Users\FMF-Guest\AppData\Managment-Cours\LaboratoryApi\obj\Debug\net7.0\ref\LaboratoryApi.dll
 C:\Users\FMF-Guest\AppData\Managment-Cours\LaboratoryApi\bin\Debug\net7.0\Newtonsoft.Json.dll
-C:\Users\FMF-Guest\AppData\Managment-Cours\LaboratoryApi\bin\Debug\net7.0\Json.dll
-C:\Users\FMF-Guest\AppData\Managment-Cours\LaboratoryApi\bin\Debug\net7.0\Json.pdb

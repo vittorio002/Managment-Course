@@ -1,8 +1,6 @@
 [
   {
     "Name": "Lab1",
-    "computers": [
-      { "Name": "PC1", "Id": "1638151614", "program": ["Visual Studio Code"] }
-    ]
+    "computers": [{ "Name": "Pc1", "Id": "1567912746", "program": ["Visual Studio Code"] }]
   }
 ]

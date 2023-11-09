@@ -13,8 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Json\Json.csproj" />
-    <ProjectReference Include="..\Reservation\Reservation.csproj" />
   </ItemGroup>
 
 </Project>

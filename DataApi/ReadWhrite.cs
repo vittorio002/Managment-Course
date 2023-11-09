@@ -1,14 +1,12 @@
-namespace LaboratoryApi
+namespace Data
 {
     public class RunJson
     {
-
-
-        public string ReadUserFile() // Read the file and write in the Dictionaries
+        public static string ReadUserFile() // Read the file and write in the Dictionaries
         {
             try
             {
-            string json = File.ReadAllText("../Json/user.json");
+            string json = File.ReadAllText("user.json");
 
             return json;
 
@@ -20,11 +18,11 @@ namespace LaboratoryApi
             }
         }
 
-        public string ReadLabFile() // Read the file and write in the Dictionaries
+        public static string ReadLabFile() // Read the file and write in the Dictionaries
         {
             try
             {
-            string json = File.ReadAllText("../Json/lab.json");
+            string json = File.ReadAllText("lab.json");
 
             return json;
 
@@ -36,11 +34,11 @@ namespace LaboratoryApi
             }
         }
 
-        public void WriteUserFile(string json) // Write the file with the Sictionaries
+        public static void WriteUserFile(string json) // Write the file with the Sictionaries
         {
             try
             {
-            File.WriteAllText("../Json/user.json", json);
+            File.WriteAllText("user.json", json);
 
             }
             catch(Exception ex)
@@ -48,12 +46,12 @@ namespace LaboratoryApi
                 Console.WriteLine("Errore durante la scrittura dei file: " + ex.Message);
             }
         }
-        public void WriteLabFile(string json) // Write the file with the Sictionaries
+        public static void WriteLabFile(string json) // Write the file with the Sictionaries
         {
             try
             {
 
-            File.WriteAllText("../Json/lab.json", json);
+            File.WriteAllText("lab.json", json);
             }
             catch(Exception ex)
             {

@@ -1,4 +1,3 @@
-using Json;
 using UserApi.Controllers;
 internal class Program
 {
@@ -25,16 +24,8 @@ internal class Program
         app.UseAuthorization();
 
         app.MapControllers();
-
-        RunJson json = new RunJson();
-        UserController u = new UserController();
-        
-        string j = json.ReadUserFile();
-        u.DeserializeFile(j);
         
         app.Run();
 
-        j = u.SerializeFile();
-        json.WriteUserFile(j);
     }
 }

@@ -1,4 +1,3 @@
-using Json;
 using LaboratoryApi.Controllers;
 internal class Program
 {
@@ -25,16 +24,9 @@ internal class Program
         app.UseAuthorization();
 
         app.MapControllers();
-
-        RunJson json = new RunJson();
-        LabController l = new LabController();
-
-        string j = json.ReadLabFile();
-        l.DeserializeFile(j);
         
         app.Run();
 
-        j = l.SerializeFile();
-        json.WriteLabFile(j);
+
     }
 }
