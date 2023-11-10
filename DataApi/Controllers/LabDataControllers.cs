@@ -24,7 +24,7 @@ namespace Data.Controllers
         }
         
         [HttpPost]
-        public ActionResult Post(Lab lab)
+        public ActionResult Post([FromBody] Lab lab)
         {
             try{
             Deserialize();
@@ -38,13 +38,13 @@ namespace Data.Controllers
             }
         }
         
-        [HttpPut("{name}")]
-        public ActionResult Put(string name, Lab lab)
+        [HttpPut]
+        public ActionResult Put([FromBody] Lab lab)
         {
             try{
             Deserialize();
 
-            Lab? l =_labs.Find(la => la.Name  == name);
+            Lab? l =_labs.Find(la => la.Name  == lab.Name);
             _labs.Remove(l);
             _labs.Add(lab);
             Serialize();
@@ -57,8 +57,7 @@ namespace Data.Controllers
         }
         
         [HttpDelete]
-        [Route("{name}")]
-        public ActionResult Delete(string name)
+        public ActionResult Delete([FromBody]string name)
         {
             try{
             Deserialize();

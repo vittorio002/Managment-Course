@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace UserApi.Controllers
 {
@@ -10,7 +11,7 @@ namespace UserApi.Controllers
         private static List<User> _users = new List<User>();
         private string? Nonce;
 
-        [HttpGet("User")]
+        [HttpGet]
         public ActionResult<List<User>> Get()
         {
             using (HttpClient request = new HttpClient())
@@ -20,23 +21,23 @@ namespace UserApi.Controllers
                 if (response.IsSuccessStatusCode)
                 {
                     string data = response.Content.ReadAsStringAsync().Result;
-                    _users = JsonConvert.DeserializeObject<List<User>>(data);              
+                    _users = JsonConvert.DeserializeObject<List<User>>(data);
                 }
             }
             return Ok(_users);
         }
         [HttpGet]
-        [Route("User/{Email}")]
-        public ActionResult<User> Get(string Email, string Password)
+        [Route("{Email}")]
+        public ActionResult<User> Get(string Email)
         {
             User? user = _users.Find(x => x.Email == Email);
-            this.Nonce = newNONCE();
-            Password += Nonce;
-            bool verify = user.Equals(Password);
-            return user == null || verify == false ? NotFound() : Ok(user);
+            //this.Nonce = newNONCE();
+            //Password += Nonce;
+            //bool verify = user.Equals(Password);
+            return user == null /*|| verify == false*/ ? NotFound() : Ok(user);
         }
         [HttpPost]
-        public ActionResult Post(User user)
+        public async Task<ActionResult> Post(User user)
         {
             User? existingUser = _users.Find(x => x.Email == user.Email);
             if (existingUser != null)
@@ -45,13 +46,31 @@ namespace UserApi.Controllers
             }
             else
             {
-                _users.Add(user);
+                using (HttpClient client = new HttpClient())
+                {
+                    string Url = "http://localhost:5246/Datapi/UserData/User";
+
+                    string requestData = JsonConvert.SerializeObject(user);
+
+                    StringContent content = new StringContent(requestData, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.PostAsync(Url, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseData = await response.Content.ReadAsStringAsync();
+                    }
+                    else
+                    {
+                        return BadRequest();
+                    }
+                }
                 var resourceUrl = Request.Path.ToString() + '/' + user.Email;
                 return Created(resourceUrl, user);
             }
         }
         [HttpPut]
-        public ActionResult Put(User user)
+        public async Task<ActionResult> Put(User user)
         {
             User? existingUser = _users.Find(x => x.Email == user.Email);
             if (existingUser == null)
@@ -60,29 +79,75 @@ namespace UserApi.Controllers
             }
             else
             {
-                existingUser.Name = user.Name;
+                 using (HttpClient client = new HttpClient())
+                {
+                    string Url = "http://localhost:5246/Datapi/UserData/User";
+
+                    string requestData = JsonConvert.SerializeObject(user);
+
+                    HttpRequestMessage request = new HttpRequestMessage
+                    {
+                        Method = HttpMethod.Put,
+                        RequestUri = new Uri(Url),
+                        Content = new StringContent(requestData, Encoding.UTF8, "application/json")
+                    };
+
+                    StringContent content = new StringContent(requestData, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.SendAsync(request);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseData = await response.Content.ReadAsStringAsync();
+                    }
+                    else
+                    {
+                        return BadRequest();
+                    }
+                }
+                //existingUser.Name = user.Name;
                 return Ok();
             }
         }
         [HttpDelete]
-        [Route("{Email}")]
-        public ActionResult Delete(string Email, string Password, string CONFIRM)
+        public async Task<ActionResult> Delete(string Email)
         {
-            string Confirm = CONFIRM;
-            var user = _users.Find(x => x.Email == Email);
-            this.Nonce = newNONCE();
-            Password += Nonce;
-            bool verify = user.Equals(Password);
+            /*User? user = _users.Find(x => x.Email == Email);
+
             if
-            ((user == null || verify == false) && Confirm != "CONFIRM")
+            (user == null)
             {
                 return NotFound();
             }
             else
-            {
-                _users.Remove(user);
+            {*/
+                
+                using (HttpClient client = new HttpClient())
+                {
+                    string Url = "http://localhost:5246/Datapi/UserData/User";
+
+                    string requestData = JsonConvert.SerializeObject(Email);
+
+                    HttpRequestMessage request = new HttpRequestMessage
+                    {
+                        Method = HttpMethod.Delete,
+                        RequestUri = new Uri(Url),
+                        Content = new StringContent(requestData, Encoding.UTF8, "application/json")
+                    };
+
+                    HttpResponseMessage response = await client.SendAsync(request);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseData = await response.Content.ReadAsStringAsync();
+                    }
+                    else
+                    {
+                        return BadRequest();
+                    }
+                }
                 return NoContent();
-            }
+            //}
         }
         private string newNONCE()
         {

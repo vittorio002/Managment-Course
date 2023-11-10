@@ -1,6 +1,1 @@
-[
-  {
-    "Name": "string",
-    "computers": [{ "Name": "string", "Id": "string", "program": ["string"] }]
-  }
-]
+[{"Name":"Lab1","computers":[{"Name":"Pc1","Id":"1567912746","program":["Visual Studio Code"]}]},{"Name":"string","computers":[{"Name":"string","Id":"string","program":["string"]}]}]

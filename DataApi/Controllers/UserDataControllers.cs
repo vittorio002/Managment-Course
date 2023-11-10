@@ -23,11 +23,12 @@ namespace Data.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Post(User user)
+        public ActionResult Post([FromBody] User user)
         {
-            try{
+            try{          
+
             Deserialize();
-            
+
             _users.Add(user);
             
             Serialize();
@@ -38,13 +39,13 @@ namespace Data.Controllers
                 return BadRequest(e);
             }
         }
-        [HttpPut("{email}")]
-        public ActionResult Put(string email, User user)
+        [HttpPut]
+        public ActionResult Put([FromBody] User user)
         {
             try{
             Deserialize();
 
-            User? u =_users.Find(la => la.Email  == email);
+            User? u =_users.Find(la => la.Email  == user.Email);
             _users.Remove(u);
             _users.Add(user);
 
@@ -57,8 +58,7 @@ namespace Data.Controllers
             }
         }
         [HttpDelete]
-        [Route("{email}")]
-        public ActionResult Delete(string email)
+        public ActionResult Delete([FromBody] string email)
         {
             try{
             Deserialize();
