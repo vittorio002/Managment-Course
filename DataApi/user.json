@@ -1,1 +1,23 @@
-[{"Email":"triolovi@gmail.com","Name":"Vittorio","Password":"ciao1","role":["user"]},{"Email":"Leonardi@gmail.com","Name":"Andrea","Password":"ciao2","role":["user"]},{"Email":"Zappala@gmail.com","Name":"Claudio","Password":"ciao3","role":["user"]}]
+[
+  {
+    "Email": "triolovi@gmail.com",
+    "Name": "Vittorio",
+    "Password": "ciao1",
+    "Nonce": "1530092650",
+    "role": ["user"]
+  },
+  {
+    "Email": "Leonardi@gmail.com",
+    "Name": "Andrea",
+    "Password": "ciao2",
+    "Nonce": null,
+    "role": ["user"]
+  },
+  {
+    "Email": "Zappala@gmail.com",
+    "Name": "Claudio",
+    "Password": "ciao3",
+    "Nonce": null,
+    "role": ["user"]
+  }
+]

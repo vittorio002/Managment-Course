@@ -1,15 +1,33 @@
 let currentUser = null;
 
 async function login() {
-    const email = document.getElementById('login-username').value;
-    const password = document.getElementById('login-password').value;
-    
-    if (email === u.email && password === u.password) {
-        currentUser = { email };
 
-    } else {
-        alert('Login fallito. Nome utente o password errati.');
-    }
+    let email = document.getElementById('login-email').value;
+    $.ajax({
+        url:'http://localhost:5117/Userapi/Auth/GetNonce',
+        method:'POST',
+        data: {email},
+        success:function (response){
+            let nonce = response.nonce;
+            let password = document.getElementById('login-password').value;
+            password+=nonce;
+            $.ajax({
+                url:'http://localhost:5117/Userapi/Auth/Login',
+                method:'POST',
+                data:{Email:email, Password:password},
+                success:function(token){
+                    console.log(fatto);
+                    sessionStorage.setItem('token',token);                    
+                },
+                error: function(error){
+                    console.error('Error during login');
+                }
+            });
+        },
+        error: function (error){
+            console.error('Error during get nonce');
+        }
+    });
 }
 
 async function register(){

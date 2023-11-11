@@ -120,6 +120,19 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "Classi/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "compile": {
+          "bin/placeholder/Classi.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Classi.dll": {}
+        }
       }
     }
   },
@@ -503,48 +516,50 @@
         "swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "Classi/1.0.0": {
+      "type": "project",
+      "path": "../Classi/Classi.csproj",
+      "msbuildProject": "../Classi/Classi.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Classi >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.11",
       "Newtonsoft.Json >= 13.0.3",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\FMF-Guest\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Vittorio\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\UserApi\\UserApi.csproj",
+      "projectUniqueName": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\UserApi\\UserApi.csproj",
       "projectName": "UserApi",
-      "projectPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\UserApi\\UserApi.csproj",
-      "packagesPath": "C:\\Users\\FMF-Guest\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\UserApi\\obj\\",
+      "projectPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\UserApi\\UserApi.csproj",
+      "packagesPath": "C:\\Users\\Vittorio\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\UserApi\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\FMF-Guest\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Vittorio\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Classi\\Classi.csproj": {
+              "projectPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Classi\\Classi.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

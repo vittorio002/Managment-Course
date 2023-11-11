@@ -121,41 +121,18 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "LaboratoryApi/1.0.0": {
+      "Classi/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "Microsoft.AspNetCore.OpenApi": "7.0.11",
-          "Newtonsoft.Json": "13.0.3",
-          "Swashbuckle.AspNetCore": "6.5.0"
+          "Newtonsoft.Json": "13.0.3"
         },
         "compile": {
-          "bin/placeholder/LaboratoryApi.dll": {}
+          "bin/placeholder/Classi.dll": {}
         },
         "runtime": {
-          "bin/placeholder/LaboratoryApi.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
-      },
-      "UserApi/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.OpenApi": "7.0.11",
-          "Newtonsoft.Json": "13.0.3",
-          "Swashbuckle.AspNetCore": "6.5.0"
-        },
-        "compile": {
-          "bin/placeholder/UserApi.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/UserApi.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+          "bin/placeholder/Classi.dll": {}
+        }
       }
     }
   },
@@ -540,64 +517,47 @@
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
     },
-    "LaboratoryApi/1.0.0": {
+    "Classi/1.0.0": {
       "type": "project",
-      "path": "../LaboratoryApi/LaboratoryApi.csproj",
-      "msbuildProject": "../LaboratoryApi/LaboratoryApi.csproj"
-    },
-    "UserApi/1.0.0": {
-      "type": "project",
-      "path": "../UserApi/UserApi.csproj",
-      "msbuildProject": "../UserApi/UserApi.csproj"
+      "path": "../Classi/Classi.csproj",
+      "msbuildProject": "../Classi/Classi.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "LaboratoryApi >= 1.0.0",
+      "Classi >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.11",
       "Newtonsoft.Json >= 13.0.3",
-      "Swashbuckle.AspNetCore >= 6.5.0",
-      "UserApi >= 1.0.0"
+      "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\FMF-Guest\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Vittorio\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\DataApi\\Data.csproj",
+      "projectUniqueName": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\DataApi\\Data.csproj",
       "projectName": "Data",
-      "projectPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\DataApi\\Data.csproj",
-      "packagesPath": "C:\\Users\\FMF-Guest\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\DataApi\\obj\\",
+      "projectPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\DataApi\\Data.csproj",
+      "packagesPath": "C:\\Users\\Vittorio\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\DataApi\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\FMF-Guest\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Vittorio\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\LaboratoryApi\\LaboratoryApi.csproj": {
-              "projectPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\LaboratoryApi\\LaboratoryApi.csproj"
-            },
-            "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\UserApi\\UserApi.csproj": {
-              "projectPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\UserApi\\UserApi.csproj"
+            "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Classi\\Classi.csproj": {
+              "projectPath": "C:\\Users\\Vittorio\\AppData\\Managment-Course\\Classi\\Classi.csproj"
             }
           }
         }

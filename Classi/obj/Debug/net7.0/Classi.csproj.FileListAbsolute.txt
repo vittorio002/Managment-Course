@@ -1,0 +1,12 @@
+C:\Users\Vittorio\AppData\Managment-Course\Classi\obj\Debug\net7.0\Classi.csproj.AssemblyReference.cache
+C:\Users\Vittorio\AppData\Managment-Course\Classi\obj\Debug\net7.0\Classi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vittorio\AppData\Managment-Course\Classi\obj\Debug\net7.0\Classi.AssemblyInfoInputs.cache
+C:\Users\Vittorio\AppData\Managment-Course\Classi\obj\Debug\net7.0\Classi.AssemblyInfo.cs
+C:\Users\Vittorio\AppData\Managment-Course\Classi\obj\Debug\net7.0\Classi.csproj.CoreCompileInputs.cache
+C:\Users\Vittorio\AppData\Managment-Course\Classi\bin\Debug\net7.0\Classi.deps.json
+C:\Users\Vittorio\AppData\Managment-Course\Classi\bin\Debug\net7.0\Classi.dll
+C:\Users\Vittorio\AppData\Managment-Course\Classi\bin\Debug\net7.0\Classi.pdb
+C:\Users\Vittorio\AppData\Managment-Course\Classi\obj\Debug\net7.0\Classi.dll
+C:\Users\Vittorio\AppData\Managment-Course\Classi\obj\Debug\net7.0\refint\Classi.dll
+C:\Users\Vittorio\AppData\Managment-Course\Classi\obj\Debug\net7.0\Classi.pdb
+C:\Users\Vittorio\AppData\Managment-Course\Classi\obj\Debug\net7.0\ref\Classi.dll

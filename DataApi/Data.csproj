@@ -13,8 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LaboratoryApi\LaboratoryApi.csproj" />
-    <ProjectReference Include="..\UserApi\UserApi.csproj" />
+    <ProjectReference Include="..\Classi\Classi.csproj" />
   </ItemGroup>
 
 </Project>

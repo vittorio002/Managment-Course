@@ -8,11 +8,10 @@
     ".NETCoreApp,Version=v7.0": {
       "Data/1.0.0": {
         "dependencies": {
-          "LaboratoryApi": "1.0.0",
+          "Classi": "1.0.0",
           "Microsoft.AspNetCore.OpenApi": "7.0.11",
           "Newtonsoft.Json": "13.0.3",
-          "Swashbuckle.AspNetCore": "6.5.0",
-          "UserApi": "1.0.0"
+          "Swashbuckle.AspNetCore": "6.5.0"
         },
         "runtime": {
           "Data.dll": {}
@@ -84,24 +83,12 @@
           }
         }
       },
-      "LaboratoryApi/1.0.0": {
+      "Classi/1.0.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.OpenApi": "7.0.11",
-          "Newtonsoft.Json": "13.0.3",
-          "Swashbuckle.AspNetCore": "6.5.0"
+          "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
-          "LaboratoryApi.dll": {}
-        }
-      },
-      "UserApi/1.0.0": {
-        "dependencies": {
-          "Microsoft.AspNetCore.OpenApi": "7.0.11",
-          "Newtonsoft.Json": "13.0.3",
-          "Swashbuckle.AspNetCore": "6.5.0"
-        },
-        "runtime": {
-          "UserApi.dll": {}
+          "Classi.dll": {}
         }
       }
     }
@@ -168,12 +155,7 @@
       "path": "swashbuckle.aspnetcore.swaggerui/6.5.0",
       "hashPath": "swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
     },
-    "LaboratoryApi/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UserApi/1.0.0": {
+    "Classi/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -9,7 +9,6 @@ namespace UserApi.Controllers
     public class UserController : ControllerBase
     {
         private static List<User> _users = new List<User>();
-        private string? Nonce;
 
         [HttpGet]
         public ActionResult<List<User>> Get()
@@ -31,10 +30,7 @@ namespace UserApi.Controllers
         public ActionResult<User> Get(string Email)
         {
             User? user = _users.Find(x => x.Email == Email);
-            //this.Nonce = newNONCE();
-            //Password += Nonce;
-            //bool verify = user.Equals(Password);
-            return user == null /*|| verify == false*/ ? NotFound() : Ok(user);
+            return user;
         }
         [HttpPost]
         public async Task<ActionResult> Post(User user)
@@ -79,7 +75,7 @@ namespace UserApi.Controllers
             }
             else
             {
-                 using (HttpClient client = new HttpClient())
+                using (HttpClient client = new HttpClient())
                 {
                     string Url = "http://localhost:5246/Datapi/UserData/User";
 
@@ -105,7 +101,6 @@ namespace UserApi.Controllers
                         return BadRequest();
                     }
                 }
-                //existingUser.Name = user.Name;
                 return Ok();
             }
         }
@@ -121,44 +116,33 @@ namespace UserApi.Controllers
             }
             else
             {*/
-                
-                using (HttpClient client = new HttpClient())
-                {
-                    string Url = "http://localhost:5246/Datapi/UserData/User";
 
-                    string requestData = JsonConvert.SerializeObject(Email);
-
-                    HttpRequestMessage request = new HttpRequestMessage
-                    {
-                        Method = HttpMethod.Delete,
-                        RequestUri = new Uri(Url),
-                        Content = new StringContent(requestData, Encoding.UTF8, "application/json")
-                    };
-
-                    HttpResponseMessage response = await client.SendAsync(request);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string responseData = await response.Content.ReadAsStringAsync();
-                    }
-                    else
-                    {
-                        return BadRequest();
-                    }
-                }
-                return NoContent();
-            //}
-        }
-        private string newNONCE()
-        {
-            string Nonce = "";
-            for (int i = 0; i < 10; i++)
+            using (HttpClient client = new HttpClient())
             {
-                Random IdR = new Random();
-                int o = IdR.Next(0, 10);
-                Nonce += o;
+                string Url = "http://localhost:5246/Datapi/UserData/User";
+
+                string requestData = JsonConvert.SerializeObject(Email);
+
+                HttpRequestMessage request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Delete,
+                    RequestUri = new Uri(Url),
+                    Content = new StringContent(requestData, Encoding.UTF8, "application/json")
+                };
+
+                HttpResponseMessage response = await client.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseData = await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
-            return Nonce;
+            return NoContent();
+            //}
         }
     }
 }

@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Classi\Classi.csproj" />
   </ItemGroup>
 
 </Project>
