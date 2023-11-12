@@ -12,7 +12,7 @@ namespace Data.Controllers
         private static List<User>? _users = new();
 
         [HttpGet]
-        public ActionResult<List<User>> Get()
+        public ActionResult<List<User>> GetAll()
         {
             try
             {
@@ -26,14 +26,14 @@ namespace Data.Controllers
             }
         }
         [HttpPost]
-        [Route("GetUser")]
-        public ActionResult<User> Get([FromBody] LoginRequest getUserParameters)
+        [Route("Login")]
+        public ActionResult<User> Login([FromBody] LoginRequest request)
         {
             try
             {
                 Deserialize();
-                User? user = _users.Find(x => x.Email == getUserParameters.Email);
-                bool verify = user.Verify(getUserParameters.Password);
+                User? user = _users.Find(x => x.Email == request.Email);
+                bool verify = user.Verify(request.Password);
                 Serialize();
                 return verify == false ? BadRequest("email or password not valid") : Ok(user);
             }
@@ -44,7 +44,7 @@ namespace Data.Controllers
         }
         [HttpPost]
         [Route("GetNonce")]
-        public ActionResult<string> Get([FromBody] string Email)
+        public ActionResult<string> Nonce([FromBody] string Email)
         {
             try
             {
@@ -62,6 +62,21 @@ namespace Data.Controllers
             }
         }
         [HttpPost]
+        [Route("GetUser")]
+        public ActionResult<User> GetSingle([FromBody] string Email)
+        {
+            try
+            {
+                Deserialize();
+                User? user = _users.Find(x => x.Email == Email);
+                return user == null ? Ok() : Conflict("exist");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+        [HttpPost("Add")]
         public ActionResult Post([FromBody] User user)
         {
             try

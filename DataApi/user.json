@@ -3,21 +3,21 @@
     "Email": "triolovi@gmail.com",
     "Name": "Vittorio",
     "Password": "ciao1",
-    "Nonce": "1530092650",
+    "Nonce": "9363492115",
     "role": ["user"]
   },
   {
     "Email": "Leonardi@gmail.com",
     "Name": "Andrea",
     "Password": "ciao2",
-    "Nonce": null,
+    "Nonce": "8934673249",
     "role": ["user"]
   },
   {
     "Email": "Zappala@gmail.com",
     "Name": "Claudio",
     "Password": "ciao3",
-    "Nonce": null,
+    "Nonce": "3489346721",
     "role": ["user"]
   }
 ]

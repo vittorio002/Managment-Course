@@ -25,44 +25,57 @@ namespace UserApi.Controllers
             }
             return Ok(_users);
         }
-        [HttpGet]
+        /*[HttpGet]
         [Route("{Email}")]
         public ActionResult<User> Get(string Email)
         {
             User? user = _users.Find(x => x.Email == Email);
             return user;
-        }
+        }*/
         [HttpPost]
-        public async Task<ActionResult> Post(User user)
+        public async Task<ActionResult> Post([FromBody] User user)
         {
-            User? existingUser = _users.Find(x => x.Email == user.Email);
-            if (existingUser != null)
+            using (HttpClient client = new HttpClient())
             {
-                return Conflict("Cannot create the User … exists.");
-            }
-            else
-            {
-                using (HttpClient client = new HttpClient())
+                string Url = "http://localhost:5246/Datapi/UserData/User/GetUser";
+                StringContent content = new StringContent(JsonConvert.SerializeObject(user.Email), Encoding.UTF8, "application/json");
+                HttpResponseMessage response = client.PostAsync(Url, content).Result;
+                if (response.IsSuccessStatusCode)
                 {
-                    string Url = "http://localhost:5246/Datapi/UserData/User";
-
-                    string requestData = JsonConvert.SerializeObject(user);
-
-                    StringContent content = new StringContent(requestData, Encoding.UTF8, "application/json");
-
-                    HttpResponseMessage response = await client.PostAsync(Url, content);
-
-                    if (response.IsSuccessStatusCode)
+                    string responseData = await response.Content.ReadAsStringAsync();
+                    /*if (responseData != null)
                     {
-                        string responseData = await response.Content.ReadAsStringAsync();
+                        return Conflict("Cannot create the User … exists.");
                     }
                     else
-                    {
-                        return BadRequest();
-                    }
+                    {*/
+                        using (HttpClient request = new HttpClient())
+                        {
+                            string Url2 = "http://localhost:5246/Datapi/UserData/User/Add";
+
+                            string requestData = JsonConvert.SerializeObject(user);
+
+                            StringContent content2 = new StringContent(requestData, Encoding.UTF8, "application/json");
+
+                            HttpResponseMessage response2 = await client.PostAsync(Url2, content2);
+
+                            if (response.IsSuccessStatusCode)
+                            {
+                                string responseData2 = await response.Content.ReadAsStringAsync();
+                            }
+                            else
+                            {
+                                return BadRequest();
+                            }
+                        }
+                        var resourceUrl = Request.Path.ToString() + '/' + user.Email;
+                        return Created(resourceUrl, user);
+                    //}
                 }
-                var resourceUrl = Request.Path.ToString() + '/' + user.Email;
-                return Created(resourceUrl, user);
+                else
+                {
+                    return Conflict("Cannot create the User ... exists");
+                }
             }
         }
         [HttpPut]

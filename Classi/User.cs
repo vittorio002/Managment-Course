@@ -16,7 +16,7 @@ namespace UserApi
             Email = email;
             Name = name;
             Password = password;
-            role = new List<string>();
+            role = new List<string>{"user"};
         }
 
         public string encrypting(string pwd, string NONCE)
