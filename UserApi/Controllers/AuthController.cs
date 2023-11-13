@@ -22,7 +22,7 @@ public class AuthController : ControllerBase
                     return Content(data);
                 }
             }
-        return BadRequest();
+        return NotFound();
     }
     [HttpPost("Login")]
     public async Task<ActionResult> Login([FromBody] LoginRequest request)
@@ -60,8 +60,8 @@ public class AuthController : ControllerBase
             }
         }
         catch(Exception ex){
-            return StatusCode(500, "internal error");
+            return StatusCode(500, "internal error "+ex);
         }
-        return StatusCode(500, "internal error");
+        return StatusCode(500, "internal error ");
     }
 }

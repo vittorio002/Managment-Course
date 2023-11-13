@@ -68,3 +68,5 @@ C:\Users\Vittorio\AppData\Managment-Course\UserApi\obj\Debug\net7.0\UserApi.genr
 C:\Users\Vittorio\AppData\Managment-Course\UserApi\obj\Debug\net7.0\ref\UserApi.dll
 C:\Users\Vittorio\AppData\Managment-Course\UserApi\bin\Debug\net7.0\Classi.dll
 C:\Users\Vittorio\AppData\Managment-Course\UserApi\bin\Debug\net7.0\Classi.pdb
+C:\Users\FMF-Guest\AppData\Managment-Cours\UserApi\bin\Debug\net7.0\Classi.dll
+C:\Users\FMF-Guest\AppData\Managment-Cours\UserApi\bin\Debug\net7.0\Classi.pdb

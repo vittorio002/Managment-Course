@@ -34,16 +34,6 @@ C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\obj\Debug\net7.0\refint\Data.
 C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\obj\Debug\net7.0\Data.pdb
 C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\obj\Debug\net7.0\Data.genruntimeconfig.cache
 C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\obj\Debug\net7.0\ref\Data.dll
-C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\bin\Debug\net7.0\LaboratoryApi.deps.json
-C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\bin\Debug\net7.0\LaboratoryApi.runtimeconfig.json
-C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\bin\Debug\net7.0\LaboratoryApi.exe
-C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\bin\Debug\net7.0\UserApi.deps.json
-C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\bin\Debug\net7.0\UserApi.runtimeconfig.json
-C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\bin\Debug\net7.0\UserApi.exe
-C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\bin\Debug\net7.0\LaboratoryApi.dll
-C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\bin\Debug\net7.0\UserApi.dll
-C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\bin\Debug\net7.0\LaboratoryApi.pdb
-C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\bin\Debug\net7.0\UserApi.pdb
 C:\Users\Vittorio\AppData\Managment-Course\DataApi\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\Vittorio\AppData\Managment-Course\DataApi\bin\Debug\net7.0\appsettings.json
 C:\Users\Vittorio\AppData\Managment-Course\DataApi\bin\Debug\net7.0\lab.json
@@ -82,3 +72,5 @@ C:\Users\Vittorio\AppData\Managment-Course\DataApi\obj\Debug\net7.0\Data.genrunt
 C:\Users\Vittorio\AppData\Managment-Course\DataApi\obj\Debug\net7.0\ref\Data.dll
 C:\Users\Vittorio\AppData\Managment-Course\DataApi\bin\Debug\net7.0\Classi.dll
 C:\Users\Vittorio\AppData\Managment-Course\DataApi\bin\Debug\net7.0\Classi.pdb
+C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\bin\Debug\net7.0\Classi.dll
+C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\bin\Debug\net7.0\Classi.pdb

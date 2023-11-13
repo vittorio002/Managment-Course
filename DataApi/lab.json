@@ -11,7 +11,7 @@
   {
     "Name": "Lab2",
     "computers": [
-      { "Name": "Pc2", "Id": "1567945678", "program": ["Visual Studio Code"] },
+      { "Name": "Pc2", "Id": "1457945678", "program": ["Visual Studio Code"] },
       { "Name": "Pc4", "Id": "4586912746", "program": ["Visual Studio Code"] },
       { "Name": "Pc6", "Id": "4468755879", "program": ["Visual Studio Code"] },
       { "Name": "Pc8", "Id": "6757577277", "program": ["Visual Studio Code"] }
