@@ -47,20 +47,57 @@
     <div id="application-page" style="display: none">
       <nav>
         <ul class="nav nav-tabs">
-            <li class="nav-item nav-link" id="userNavItem" style="display: none;">User</li>
             <li class="nav-item nav-link" id="adminNavItem" style="display: none;">Admin</li>
             <li class="nav-item nav-link" id="labNavItem" style="display: none;">Lab Manager</li>
+            <li class="nav-item nav-link" id="userNavItem" style="display: none;">User</li>
             <li class="nav-item nav-link rigth" id="profileNavItem" style="display: block;">Hi, </li>
         </ul>
       </nav>
       <div class="center" id="content"></div>
+      <!--Modify Modal-->
+      <div id="myModal">
+        <div id="modalContent">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <form id="myForm" onsubmit="submitForm(event)">
+
+                <label class="text-black" for="name">Name:</label>
+                <input type="text" id="name" name="name">
+    
+                <label class="text-black" for="email">Email:</label>
+                <input type="text" id="email" name="email" readonly>
+
+                <label class="text-black" for="role">Role:</label>
+                <input type="text" id="role" name="role">
+    
+                <button onclick="Modify()">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!--Add Modal-->
+    <div id="myModalAdd">
+      <div id="modalContent">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <form id="myForm" onsubmit="submitForm(event)">
+
+              <label class="text-black" for="name">Name:</label>
+              <input type="text" id="nameAdd" name="name">
+  
+              <label class="text-black" for="email">Email:</label>
+              <input type="text" id="emailAdd" name="email">
+
+              <label class="text-black" for="role">Password:</label>
+              <input type="password" id="passwordAdd" name="password">
+  
+              <button onclick="Modify()">Submit</button>
+          </form>
+      </div>
+  </div>
 
       <script>
-
-       
-
         document.querySelector("nav ul").addEventListener("click", gestisciClic);
       </script>
+
     </div>
   </body>
 </html>

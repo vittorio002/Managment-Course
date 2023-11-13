@@ -1,32 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Classi\\Classi.csproj": {}
+    "c:\\Users\\Vittorio\\AppData\\Managment-Course\\Classi\\Classi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Classi\\Classi.csproj": {
+    "c:\\Users\\Vittorio\\AppData\\Managment-Course\\Classi\\Classi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Classi\\Classi.csproj",
+        "projectUniqueName": "c:\\Users\\Vittorio\\AppData\\Managment-Course\\Classi\\Classi.csproj",
         "projectName": "Classi",
-        "projectPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Classi\\Classi.csproj",
-        "packagesPath": "C:\\Users\\FMF-Guest\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Classi\\obj\\",
+        "projectPath": "c:\\Users\\Vittorio\\AppData\\Managment-Course\\Classi\\Classi.csproj",
+        "packagesPath": "C:\\Users\\Vittorio\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\Vittorio\\AppData\\Managment-Course\\Classi\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\FMF-Guest\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Vittorio\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

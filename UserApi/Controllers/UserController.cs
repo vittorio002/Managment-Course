@@ -79,7 +79,7 @@ namespace UserApi.Controllers
             }
         }
         [HttpPut]
-        public async Task<ActionResult> Put(User user)
+        public async Task<ActionResult> Put([FromBody]User user)
         {
             User? existingUser = _users.Find(x => x.Email == user.Email);
             if (existingUser == null)
@@ -88,6 +88,11 @@ namespace UserApi.Controllers
             }
             else
             {
+                if(user.Name != null){
+                    existingUser.Name = user.Name;
+                }
+                if(existingUser.role != null)
+                    existingUser.role = user.role;
                 using (HttpClient client = new HttpClient())
                 {
                     string Url = "http://localhost:5246/Datapi/UserData/User";
@@ -118,7 +123,7 @@ namespace UserApi.Controllers
             }
         }
         [HttpDelete]
-        public async Task<ActionResult> Delete(string Email)
+        public async Task<ActionResult> Delete([FromBody]string Email)
         {
             /*User? user = _users.Find(x => x.Email == Email);
 

@@ -1,14 +1,14 @@
-//using Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments;
-
 namespace LaboratoryApi
 {
     public class Computer{
         public string Name{get;set;}
         public string Id {get;set;}
+        public bool Status {get;set;}
         public List<string> program {get;set;}
         public Computer(string name){
             Name = name;
             Id = randomId();
+            Status = true;
             program = new List<string>();
         }
 

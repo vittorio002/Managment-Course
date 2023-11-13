@@ -66,3 +66,5 @@ C:\Users\Vittorio\AppData\Managment-Course\LaboratoryApi\obj\Debug\net7.0\refint
 C:\Users\Vittorio\AppData\Managment-Course\LaboratoryApi\obj\Debug\net7.0\LaboratoryApi.pdb
 C:\Users\Vittorio\AppData\Managment-Course\LaboratoryApi\obj\Debug\net7.0\LaboratoryApi.genruntimeconfig.cache
 C:\Users\Vittorio\AppData\Managment-Course\LaboratoryApi\obj\Debug\net7.0\ref\LaboratoryApi.dll
+C:\Users\Vittorio\AppData\Managment-Course\LaboratoryApi\bin\Debug\net7.0\Classi.dll
+C:\Users\Vittorio\AppData\Managment-Course\LaboratoryApi\bin\Debug\net7.0\Classi.pdb
