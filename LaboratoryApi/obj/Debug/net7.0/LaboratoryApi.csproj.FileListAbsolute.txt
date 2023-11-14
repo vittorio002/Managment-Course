@@ -68,3 +68,5 @@ C:\Users\Vittorio\AppData\Managment-Course\LaboratoryApi\obj\Debug\net7.0\Labora
 C:\Users\Vittorio\AppData\Managment-Course\LaboratoryApi\obj\Debug\net7.0\ref\LaboratoryApi.dll
 C:\Users\Vittorio\AppData\Managment-Course\LaboratoryApi\bin\Debug\net7.0\Classi.dll
 C:\Users\Vittorio\AppData\Managment-Course\LaboratoryApi\bin\Debug\net7.0\Classi.pdb
+C:\Users\FMF-Guest\AppData\Managment-Cours\LaboratoryApi\bin\Debug\net7.0\Classi.dll
+C:\Users\FMF-Guest\AppData\Managment-Cours\LaboratoryApi\bin\Debug\net7.0\Classi.pdb

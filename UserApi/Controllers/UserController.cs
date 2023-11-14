@@ -88,16 +88,15 @@ namespace UserApi.Controllers
             }
             else
             {
-                if(user.Name != null){
+                if(user.Name != ""){
                     existingUser.Name = user.Name;
                 }
-                if(existingUser.role != null)
-                    existingUser.role = user.role;
+                existingUser.role = user.role;
                 using (HttpClient client = new HttpClient())
                 {
                     string Url = "http://localhost:5246/Datapi/UserData/User";
 
-                    string requestData = JsonConvert.SerializeObject(user);
+                    string requestData = JsonConvert.SerializeObject(existingUser);
 
                     HttpRequestMessage request = new HttpRequestMessage
                     {

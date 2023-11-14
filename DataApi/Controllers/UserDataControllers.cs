@@ -104,7 +104,9 @@ namespace Data.Controllers
 
                 User? u = _users.Find(la => la.Email == user.Email);
                 _users.Remove(u);
-                _users.Add(user);
+                u.Name = user.Name;
+                u.role = user.role;
+                _users.Add(u);
 
                 Serialize();
 

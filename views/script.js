@@ -79,7 +79,44 @@ async function switchToRegistration() {
     switch (targetId) {
       case "userNavItem":
         //User Interface
-        document.getElementById("content").innerHTML = "User";
+        const content = document.getElementById("content");
+        content.innerHTML = '';
+
+        const div = document.createElement('div');
+        const inputHour = document.createElement('select');
+        inputHour.textContent = "Select Hour";
+        for(let i = 9; i<=18;i++){
+          let option = document.createElement('option');
+          option.value = i;
+          option.text = i;
+          inputHour.appendChild(option);
+        }
+        inputHour.addEventListener('click',function(){
+          
+        });
+
+        const Date = document.createElement('input');
+        Date.type = "text";
+        Date.readOnly;
+        Date.id = "dateInput";
+
+        const inputDate = document.createElement('button');
+        inputDate.textContent="Select Date";
+        inputDate.addEventListener('click', function(){
+          toggleCalendario();
+        });
+
+        const pDate = document.createElement('p');
+        pDate.textContent = "Date: ";
+        const pHour = document.createElement('p');
+        pHour.textContent = "Hour: ";
+        
+        div.appendChild(pDate);
+        div.appendChild(inputDate);
+        div.appendChild(Date);
+        div.appendChild(pHour);
+        div.appendChild(inputHour);
+        content.appendChild(div);
         break;
       case "adminNavItem":
         //Admin Interface
@@ -118,7 +155,9 @@ async function switchToRegistration() {
                     success:function(){
                       document.getElementById('adminNavItem').click();
                     },
-                    error:{}
+                    error: function (xhr, textStatus, errorThrown) {
+                      document.getElementById("errorLogin").textContent = "Error Login: " +" "+ xhr.status +" "+ textStatus +" "+ errorThrown;
+                    }
                   })
               });
 
@@ -130,11 +169,6 @@ async function switchToRegistration() {
             ButtonAdd.textContent = "Add User";
             ButtonAdd.addEventListener('click', function() {
               document.getElementById("myModalAdd").style.display = "block";
-              
-              const email = document.getElementById("emailAdd").value;
-              const name = document.getElementById("nameAdd").value;
-              const password = document.getElementById("passwordAdd").value;
-              Add(email,name,password);
             });
             content.appendChild(ButtonAdd);
           },
@@ -144,7 +178,73 @@ async function switchToRegistration() {
         break;
       case "labNavItem":
         //Lab Manager Interface
-        document.getElementById("content").innerHTML = "Lab Manager";
+        $.ajax({
+          method:'GET',
+          url:'http://localhost:5033/Labapi/Lab',
+          success:function(response){
+            let content =  document.getElementById("content");
+            content.innerHTML = '';
+            for (const lab of response){
+              const divLab = document.createElement('div');
+              divLab.textContent = lab.name;
+              for(const computer of lab.computers){
+                const divPc = document.createElement('div');
+                divPc.textContent = computer.name+" | Id: "+computer.id+" | Status: "+computer.status+" | Program: "+computer.program;
+                
+                const ButtonDelete = document.createElement('button');
+                ButtonDelete.classList.add("rigth");
+                ButtonDelete.textContent = "Delete";
+                ButtonDelete.addEventListener('click', function(){
+                  $.ajax({
+                    method:'DELETE',
+                    contentType: "application/json",
+                    url:'http://localhost:5033/Labapi/Lab/Computer',
+                    data: JSON.stringify(computer.name),
+                    success:function(){
+                      document.getElementById('labNavItem').click();
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                      document.getElementById("errorLogin").textContent = "Error Login: " +" "+ xhr.status +" "+ textStatus +" "+ errorThrown;
+                    }
+                  })
+                });
+
+                const ButtonModPc = document.createElement('button');
+                ButtonModPc.textContent = 'Modify';
+                ButtonModPc.classList.add("Lessrigth")
+                ButtonModPc.addEventListener('click', function(){
+                  document.getElementById("myModalAddProgram").style.display = "block";
+                  document.getElementById("namePc").value = computer.name;
+                  document.getElementById("IdPc").value = computer.id;
+                  document.getElementById("status").value = computer.status;
+                  document.getElementById("programs").value = computer.program;
+                });
+
+                divPc.appendChild(ButtonModPc);
+                divPc.appendChild(ButtonDelete);
+                divLab.appendChild(divPc);
+              }
+              const ButtonAdd = document.createElement('button');
+              ButtonAdd.textContent = 'Add';
+              ButtonAdd.addEventListener('click',function(){
+                $.ajax({
+                  method:"POST",
+                  contentType: "application/json",
+                  url:'http://localhost:5033/Labapi/Lab/Computer',
+                  data: JSON.stringify(lab.name),
+                  success:function(){
+                    document.getElementById('labNavItem').click();
+                  },
+                  error: function (xhr, textStatus, errorThrown) {
+                    document.getElementById("errorLogin").textContent = "Error Login: " +" "+ xhr.status +" "+ textStatus +" "+ errorThrown;
+                  }
+                })
+              });
+              divLab.appendChild(ButtonAdd);
+              content.appendChild(divLab);
+            }
+          }
+        })
         break;
       case "profileNavItem":
         //Profile
@@ -173,34 +273,147 @@ async function switchToRegistration() {
         Nonce:null,
         role: role
       }),
+      success:function(response){
+        document.getElementById('adminNavItem').click();
+      },
+      error: function (xhr, textStatus, errorThrown) {
+        document.getElementById("errorRegistration").textContent = "Error Creation: " + xhr.status +" "+ textStatus +" "+ errorThrown;
+  
+      }
     })
 }
 
-async function Add(email, name, password) {
+function Add() {
+  const emailAdd = document.getElementById("emailAdd").value;
+  const nameAdd = document.getElementById("nameAdd").value;
+  const passwordAdd = document.getElementById("passwordAdd").value;
+
   $.ajax({
     method: "POST",
     url: "http://localhost:5117/Userapi/User",
     contentType: "application/json",
     data: JSON.stringify({
-      Email: email,
-      Name: name,
-      Password: password,
+      Email: emailAdd,
+      Name: nameAdd,
+      Password: passwordAdd,
       Nonce: null,
       role: ["user"],
     }),
     error: function (xhr, textStatus, errorThrown) {
       document.getElementById("errorRegistration").textContent = "Error Creation: " + xhr.status +" "+ textStatus +" "+ errorThrown;
 
-    },
+    }
   });
+}
+
+function ModifyPc(){
+  const namePc = document.getElementById("namePc").value;
+  const IdPc = document.getElementById("IdPc").value;
+  let status = document.getElementById("status").value;
+  
+  if (status == "true"){
+    status = true;
+  }
+  else{
+    status = false
+  }
+  let programs = document.getElementById("programs").value;
+  programs = programs.split(",");
+  console.log(namePc, IdPc, status, programs);
+
+  $.ajax({
+    method:'PUT',
+    url:'http://localhost:5033/Labapi/Lab/Computer',
+    contentType: "application/json",
+    data: JSON.stringify({
+      Name: namePc,
+      Id: IdPc,
+      Status: status,
+      program: programs,
+    }),
+    success:function(){
+      document.getElementById('labNavItem').click();
+    },
+    error: function (xhr, textStatus, errorThrown) {
+      document.getElementById("errorRegistration").textContent = "Error Creation: " + xhr.status +" "+ textStatus +" "+ errorThrown;
+
+    },
+  })
 }
 
 async function closeModal() {
   document.getElementById("myModal").style.display = "none";
   document.getElementById("myModalAdd").style.display = "none";
+  document.getElementById("myModalAddProgram").style.display = "none";
+  document.getElementById('calendar').style.display = 'none';
 }
 async function submitForm(event) {
   event.preventDefault();
   closeModal();
-  document.getElementById('adminNavItem').click();
+}
+
+function toggleCalendario() {
+  let calendario = document.getElementById('calendar');
+  calendario.style.display = (calendario.style.display === 'block') ? 'none' : 'block';
+  if (calendario.style.display === 'block') {
+    popolaGiorni();
+    popolaMesi();
+    popolaAnni();
+  }
+}
+
+function popolaOre(){
+  let selectOra = document.getElementById('hour')
+  selectOra.innerHTML = '';
+  for(let i = 9; i<=18;i++){
+    let option = document.createElement('option');
+    option.value = i;
+    option.text = i;
+    selectOra.appendChild(option);
+  }
+}
+
+function popolaGiorni() {
+  let selectGiorno = document.getElementById('giorno');
+  selectGiorno.innerHTML = '';
+  for (let i = 1; i <= 31; i++) {
+    let option = document.createElement('option');
+    option.value = i;
+    option.text = i;
+    selectGiorno.appendChild(option);
+  }
+}
+
+function popolaMesi() {
+  let selectMese = document.getElementById('mese');
+  let mesi = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
+  selectMese.innerHTML = '';
+  for (let i = 0; i < mesi.length; i++) {
+    let option = document.createElement('option');
+    option.value = i + 1;
+    option.text = mesi[i];
+    selectMese.appendChild(option);
+  }
+}
+
+function popolaAnni() {
+  let selectAnno = document.getElementById('anno');
+  let annoCorrente = new Date().getFullYear();
+  selectAnno.innerHTML = '';
+  for (let i = annoCorrente; i <= annoCorrente + 10; i++) {
+    let option = document.createElement('option');
+    option.value = i;
+    option.text = i;
+    selectAnno.appendChild(option);
+  }
+}
+
+function selezionaData() {
+  let giorno = document.getElementById('giorno').value;
+  let mese = document.getElementById('mese').value;
+  let anno = document.getElementById('anno').value;
+  let dateInput = document.getElementById('dateInput');
+
+  dateInput.value = giorno + '/' + mese + '/' + anno;
+  document.getElementById('calendar').style.display = 'none';
 }

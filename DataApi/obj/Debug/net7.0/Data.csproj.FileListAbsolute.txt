@@ -74,3 +74,4 @@ C:\Users\Vittorio\AppData\Managment-Course\DataApi\bin\Debug\net7.0\Classi.dll
 C:\Users\Vittorio\AppData\Managment-Course\DataApi\bin\Debug\net7.0\Classi.pdb
 C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\bin\Debug\net7.0\Classi.dll
 C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\bin\Debug\net7.0\Classi.pdb
+C:\Users\FMF-Guest\AppData\Managment-Cours\DataApi\bin\Debug\net7.0\reservation.json

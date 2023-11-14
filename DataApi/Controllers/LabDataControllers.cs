@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using UserApi;
 using LaboratoryApi;
 
 namespace Data.Controllers
@@ -9,7 +8,7 @@ namespace Data.Controllers
     [Route("Datapi/[controller]/Lab")]
     public class LabDataController : ControllerBase
     {
-        private static List<Lab>? _labs = new();
+        private static List<Lab> _labs = new();
         
         [HttpGet]
         public ActionResult<List<Lab>> Get()

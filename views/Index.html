@@ -14,6 +14,7 @@
       crossorigin="anonymous" />
   </head>
   <body class="text-bg-dark p-3">
+    
     <!--Login-->
     <div id="login-page">
       <div class="topCenter">
@@ -29,6 +30,7 @@
         <p id="errorLogin"></p>
       </div>
     </div>
+
     <!--Registration-->
     <div id="registration-page" style="display: none;">
       <div class="topCenter">
@@ -43,17 +45,19 @@
         <p id="errorRegistration"></p>
       </div>
     </div>
+
     <!--Application Page-->
     <div id="application-page" style="display: none">
       <nav>
         <ul class="nav nav-tabs">
             <li class="nav-item nav-link" id="adminNavItem" style="display: none;">Admin</li>
             <li class="nav-item nav-link" id="labNavItem" style="display: none;">Lab Manager</li>
-            <li class="nav-item nav-link" id="userNavItem" style="display: none;">User</li>
+            <li class="nav-item nav-link" id="userNavItem" style="display: none;">Reserve</li>
             <li class="nav-item nav-link rigth" id="profileNavItem" style="display: block;">Hi, </li>
         </ul>
       </nav>
       <div class="center" id="content"></div>
+
       <!--Modify Modal-->
       <div id="myModal">
         <div id="modalContent">
@@ -89,11 +93,49 @@
               <label class="text-black" for="role">Password:</label>
               <input type="password" id="passwordAdd" name="password">
   
-              <button onclick="Modify()">Submit</button>
+              <button onclick="Add()">Submit</button>
           </form>
       </div>
   </div>
 
+  <!--Program Add Pc-->
+  <div id="myModalAddProgram">
+    <div id="modalContent">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <form id="myForm" onsubmit="submitForm(event)">
+
+          <label class="text-black" for="namePc">Name:</label>
+            <input type="text" id="namePc" name="namePc" readonly>
+
+            <label class="text-black" for="IdPc">Id:</label>
+            <input type="text" id="IdPc" name="IdPc" readonly>
+
+            <label class="text-black" for="status">Status:</label>
+            <input type="text" id="status" name="status">
+
+            <label class="text-black" for="programs">Progrms:</label>
+            <input type="text" id="programs" name="programs">
+
+            <button onclick="ModifyPc()">Submit</button>
+        </form>
+    </div>
+</div>
+
+<!--Calendar-->
+<div id="calendar">
+  <div id="modalContent">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <form id="myForm" onsubmit="submitForm(event)">
+        <div  id="calendario">
+          <select id="giorno"></select>
+          <select id="mese"></select>
+          <select id="anno"></select>
+          <button onclick="selezionaData()">Select</button>
+        </div>
+      </form>
+    </div>
+</div>
+ 
       <script>
         document.querySelector("nav ul").addEventListener("click", gestisciClic);
       </script>
