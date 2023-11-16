@@ -76,6 +76,35 @@ namespace Data.Controllers
                 return BadRequest(e);
             }
         }
+        [HttpPost]
+        [Route("StorageToken")]
+        public ActionResult AssignToken([FromBody]string token){
+            try
+            {
+                string[] t = token.Split("-");
+                User? user = JsonConvert.DeserializeObject<User>(t[0]);
+                Deserialize();
+                User u = _users.Find(us=>us.Email == user.Email);
+                u.setToken(token);
+                Serialize();
+                return Ok();
+            }
+            catch(Exception ex){
+                return BadRequest(ex);
+            }
+        }
+        [HttpPost]
+        [Route("TakeToken")]
+        public ActionResult<string> TakeToken([FromBody]string email){
+            try
+            {Deserialize();
+            User user = _users.Find(u=>u.Email == email);
+            return user==null? NotFound() : user.getToken();
+            }
+            catch(Exception ex){
+                return BadRequest(ex);
+            }
+        }
         [HttpPost("Add")]
         public ActionResult Post([FromBody] User user)
         {

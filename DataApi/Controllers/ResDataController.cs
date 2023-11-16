@@ -7,13 +7,11 @@ namespace Data.Controllers
     [Route("Datapi/[controller]/Reservation")]
     public class ResDataController : ControllerBase
     {
-        private static List<Reservation> _reservation = new List<Reservation>{new Reservation("triolovi@gmail.com","Pc1",12,"12/12/2023")};
-
+        private static List<Reservation> _reservation = new List<Reservation>();
         [HttpGet]
         public ActionResult<List<Reservation>> Get()
         {
-            //Deserialize();
-            Serialize();
+            Deserialize();
             return Ok(_reservation);
         }
         [HttpPost]

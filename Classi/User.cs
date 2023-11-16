@@ -44,5 +44,11 @@ namespace UserApi
         public string GetNonce(){
             return this.Nonce;
         }
+        public void setToken(string token){
+            this.Nonce = token;
+        }
+        public string getToken(){
+            return this.Nonce;
+        }
     }
 }

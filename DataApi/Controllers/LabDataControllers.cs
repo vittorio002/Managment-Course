@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Requests;
 using LaboratoryApi;
 
 namespace Data.Controllers
@@ -22,21 +23,6 @@ namespace Data.Controllers
             }
         }
         
-        [HttpPost]
-        public ActionResult Post([FromBody] Lab lab)
-        {
-            try{
-            Deserialize();
-            _labs.Add(lab);
-            Serialize();
-
-            return Ok();
-            }
-            catch(Exception e){
-                return BadRequest(e);
-            }
-        }
-        
         [HttpPut]
         public ActionResult Put([FromBody] Lab lab)
         {
@@ -46,24 +32,6 @@ namespace Data.Controllers
             Lab? l =_labs.Find(la => la.Name  == lab.Name);
             _labs.Remove(l);
             _labs.Add(lab);
-            Serialize();
-
-            return Ok();
-            }
-            catch(Exception e){
-                return BadRequest(e);
-            }
-        }
-        
-        [HttpDelete]
-        public ActionResult Delete([FromBody]string name)
-        {
-            try{
-            Deserialize();
-
-            Lab? l = _labs.Find(lab => lab.Name == name);
-            _labs.Remove(l);
-
             Serialize();
 
             return Ok();

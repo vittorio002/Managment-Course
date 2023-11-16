@@ -11,23 +11,24 @@ public class AuthController : ControllerBase
     [HttpPost("GetNonce")]
     public async Task<ActionResult<string>> GetNonce([FromBody] string Email)
     {
-         using (HttpClient request = new HttpClient())
+        using (HttpClient request = new HttpClient())
+        {
+            string apiUrl = "http://localhost:5246/Datapi/UserData/User/GetNonce";
+            StringContent jsonContent = new StringContent(JsonConvert.SerializeObject(Email), Encoding.UTF8, "application/json");
+            HttpResponseMessage response = request.PostAsync(apiUrl, jsonContent).Result;
+            if (response.IsSuccessStatusCode)
             {
-                string apiUrl = "http://localhost:5246/Datapi/UserData/User/GetNonce";
-                StringContent jsonContent = new StringContent(JsonConvert.SerializeObject(Email), Encoding.UTF8, "application/json");
-                HttpResponseMessage response = request.PostAsync(apiUrl, jsonContent).Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    string data = await response.Content.ReadAsStringAsync();
-                    return Content(data);
-                }
+                string data = await response.Content.ReadAsStringAsync();
+                return Content(data);
             }
+        }
         return NotFound();
     }
     [HttpPost("Login")]
     public async Task<ActionResult> Login([FromBody] LoginRequest request)
     {
-        try{
+        try
+        {
             using (HttpClient UserRequest = new HttpClient())
             {
                 string apiUrl = "http://localhost:5246/Datapi/UserData/User/Login";
@@ -50,7 +51,22 @@ public class AuthController : ControllerBase
                     }
                     else
                     {
-                        return Content(data);
+                        string d = data;
+                        long tick = DateTime.Now.Ticks;
+                        long ms = tick/TimeSpan.TicksPerMillisecond;
+                        d+="-"+ms;
+                        
+                        using (HttpClient client = new HttpClient())
+                        {
+                            string Url = "http://localhost:5246/Datapi/UserData/User/StorageToken";
+                            StringContent DataContent = new StringContent(JsonConvert.SerializeObject(d), Encoding.UTF8, "application/json");
+                            HttpResponseMessage response2 = await UserRequest.PostAsync(Url, DataContent);
+                            if (response.IsSuccessStatusCode)
+                            {
+                                string Data = await response.Content.ReadAsStringAsync();
+                                return Content(data);
+                            }
+                        }
                     }
                 }
                 else
@@ -59,8 +75,9 @@ public class AuthController : ControllerBase
                 }
             }
         }
-        catch(Exception ex){
-            return StatusCode(500, "internal error "+ex);
+        catch (Exception ex)
+        {
+            return StatusCode(500, "internal error " + ex);
         }
         return StatusCode(500, "internal error ");
     }

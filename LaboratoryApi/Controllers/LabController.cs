@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Requests;
 using System.Text;
 
 namespace LaboratoryApi.Controllers
@@ -11,6 +12,7 @@ namespace LaboratoryApi.Controllers
         private static List<Lab> _labs = new List<Lab>();
 
         [HttpGet]
+        [TokenValidation]
         public ActionResult<List<Lab>> Get()
         {
             using (HttpClient request = new HttpClient())
@@ -26,48 +28,48 @@ namespace LaboratoryApi.Controllers
             return Ok(_labs);
         }
 
-        [HttpGet]
-        [Route("{Name}")]
-        public ActionResult<Lab> Get(string Name)
-        {
-            Lab? lab = _labs.Find(x => x.Name == Name);
-            return lab == null ? NotFound() : Ok(lab);
-        }
         [HttpPost]
-        public async Task<ActionResult> Post(Lab lab)
+        [Route("Available")]
+        [TokenValidation]
+        public async Task<ActionResult> Post([FromBody] ReserveRequest reserve)
         {
-            Lab? existingUser = _labs.Find(x => x.Name == lab.Name);
-            if (existingUser != null)
+            using (HttpClient request = new HttpClient())
             {
-                return Conflict("Cannot create the User … exists.");
-            }
-            else
-            {
-                using (HttpClient client = new HttpClient())
+                string apiUrl = "http://localhost:5246/Datapi/LabData/Lab";
+                HttpResponseMessage response = request.GetAsync(apiUrl).Result;
+                if (response.IsSuccessStatusCode)
                 {
-                    string Url = "http://localhost:5246/Datapi/LabData/Lab";
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    _labs = JsonConvert.DeserializeObject<List<Lab>>(data);
 
-                    string requestData = JsonConvert.SerializeObject(lab);
-
-                    StringContent content = new StringContent(requestData, Encoding.UTF8, "application/json");
-
-                    HttpResponseMessage response = await client.PostAsync(Url, content);
-
-                    if (response.IsSuccessStatusCode)
+                    foreach (Lab lab in _labs)
                     {
-                        string responseData = await response.Content.ReadAsStringAsync();
+                        List<Computer> removePc = new();
+                        foreach (Computer pc in lab.computers)
+                        {
+                            ReserveRequest res = pc.Reserve.Find(r => r.Date == reserve.Date && r.Hour == reserve.Hour);
+                            if (res != null)
+                            {
+                                removePc.Add(pc);
+                            }
+                        }
+                        foreach (Computer remove in removePc)
+                        {
+                            lab.computers.Remove(remove);
+                        }
                     }
-                    else
-                    {
-                        return BadRequest();
-                    }
+                    return Ok(_labs);
                 }
-                var resourceUrl = Request.Path.ToString() + '/' + lab.Name;
-                return Created(resourceUrl, lab);
+                else
+                {
+                    return BadRequest();
+                }
             }
         }
+
         [HttpPost]
         [Route("Computer")]
+        [TokenValidation]
         public async Task<ActionResult> Post([FromBody] string Labname)
         {
             using (HttpClient request = new HttpClient())
@@ -120,8 +122,73 @@ namespace LaboratoryApi.Controllers
                 }
             }
         }
+
+        [HttpPost]
+        [Route("AddReservation")]
+        public async Task<ActionResult> Post([FromBody] Reservation reservetion)
+        {
+            using (HttpClient request = new HttpClient())
+            {
+                string apiUrl = "http://localhost:5246/Datapi/LabData/Lab";
+                HttpResponseMessage response = request.GetAsync(apiUrl).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    _labs = JsonConvert.DeserializeObject<List<Lab>>(data);
+
+                    foreach (Lab lab in _labs)
+                    {
+                        Computer pc = lab.computers.Find(c => c.Name == reservetion.NamePc);
+                        if (pc != null)
+                        {
+                            pc.Reserve.Add(new ReserveRequest(reservetion.Date, reservetion.Hour));
+
+                            using (HttpClient client = new HttpClient())
+                            {
+                                string Url = "http://localhost:5246/Datapi/LabData/Lab";
+
+                                string requestData = JsonConvert.SerializeObject(lab);
+
+                                HttpRequestMessage Putrequest = new HttpRequestMessage
+                                {
+                                    Method = HttpMethod.Put,
+                                    RequestUri = new Uri(Url),
+                                    Content = new StringContent(requestData, Encoding.UTF8, "application/json")
+                                };
+
+                                StringContent content = new StringContent(requestData, Encoding.UTF8, "application/json");
+
+                                HttpResponseMessage Putresponse = await client.SendAsync(Putrequest);
+
+                                if (response.IsSuccessStatusCode)
+                                {
+                                    string responseData = await response.Content.ReadAsStringAsync();
+                                    return Ok();
+                                }
+                                else
+                                {
+                                    return BadRequest();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            return BadRequest();
+
+        }
+
         [HttpPut]
         [Route("Computer")]
+        [TokenValidation]
         public async Task<ActionResult> PutPc([FromBody] Computer pc)
         {
             using (HttpClient request = new HttpClient())
@@ -135,12 +202,13 @@ namespace LaboratoryApi.Controllers
 
                     foreach (Lab laboratory in _labs)
                     {
-                        Computer? c = laboratory.computers.Find(c => c.Name == pc.Name);
+                        Computer? c = laboratory.computers.Find(c => c.Id == pc.Id);
 
                         if (c != null)
                         {
                             laboratory.computers.Remove(c);
                             c.program = pc.program;
+                            c.Name = pc.Name;
                             c.Status = pc.Status;
                             laboratory.computers.Add(c);
 
@@ -181,7 +249,9 @@ namespace LaboratoryApi.Controllers
             }
             return BadRequest();
         }
+
         [HttpPut]
+        [TokenValidation]
         public async Task<ActionResult> Put(Lab lab)
         {
             Lab? existingUser = _labs.Find(x => x.Name == lab.Name);
@@ -222,7 +292,8 @@ namespace LaboratoryApi.Controllers
         }
         [HttpDelete]
         [Route("Computer")]
-        public async Task<ActionResult> DeletePc([FromBody] string PcName)
+        [TokenValidation]
+        public async Task<ActionResult> DeletePc([FromBody] string PcId)
         {
             using (HttpClient request = new HttpClient())
             {
@@ -235,7 +306,7 @@ namespace LaboratoryApi.Controllers
 
                     foreach (Lab lab in _labs)
                     {
-                        Computer c = lab.computers.Find(c => c.Name == PcName);
+                        Computer c = lab.computers.Find(c => c.Id == PcId);
                         if (c != null)
                         {
                             lab.computers.Remove(c);
@@ -280,45 +351,63 @@ namespace LaboratoryApi.Controllers
                 }
             }
         }
+
         [HttpDelete]
-        public async Task<ActionResult> Delete(string Name)
+        [Route("RemoveReservation")]
+        public async Task<ActionResult> Delete([FromBody] Reservation reservation)
         {
-            /*User? user = _users.Find(x => x.Email == Email);
-
-            if
-            (user == null)
+            using (HttpClient request = new HttpClient())
             {
-                return NotFound();
-            }
-            else
-            {*/
-
-            using (HttpClient client = new HttpClient())
-            {
-                string Url = "http://localhost:5246/Datapi/LabData/Lab";
-
-                string requestData = JsonConvert.SerializeObject(Name);
-
-                HttpRequestMessage request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Delete,
-                    RequestUri = new Uri(Url),
-                    Content = new StringContent(requestData, Encoding.UTF8, "application/json")
-                };
-
-                HttpResponseMessage response = await client.SendAsync(request);
-
+                string apiUrl = "http://localhost:5246/Datapi/LabData/Lab";
+                HttpResponseMessage response = request.GetAsync(apiUrl).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    string responseData = await response.Content.ReadAsStringAsync();
-                }
-                else
-                {
-                    return BadRequest();
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    _labs = JsonConvert.DeserializeObject<List<Lab>>(data);
+
+                    foreach (Lab lab in _labs)
+                    {
+                        Computer pc = lab.computers.Find(c => c.Name == reservation.NamePc);
+                        if (pc != null)
+                        {
+                            lab.computers.Remove(pc);
+                            ReserveRequest r = pc.Reserve.Find(r => r.Date == reservation.Date && r.Hour == reservation.Hour);
+                            pc.Reserve.Remove(r);
+                            lab.computers.Add(pc);
+
+                            using (HttpClient client = new HttpClient())
+                            {
+                                string Url = "http://localhost:5246/Datapi/LabData/Lab";
+
+                                string requestData = JsonConvert.SerializeObject(lab);
+
+                                HttpRequestMessage Putrequest = new HttpRequestMessage
+                                {
+                                    Method = HttpMethod.Put,
+                                    RequestUri = new Uri(Url),
+                                    Content = new StringContent(requestData, Encoding.UTF8, "application/json")
+                                };
+
+                                StringContent content = new StringContent(requestData, Encoding.UTF8, "application/json");
+
+                                HttpResponseMessage Putresponse = await client.SendAsync(Putrequest);
+
+                                if (response.IsSuccessStatusCode)
+                                {
+                                    string responseData = await response.Content.ReadAsStringAsync();
+                                    return Ok();
+                                }
+                                else
+                                {
+                                    return BadRequest();
+                                }
+                            }
+                        }
+                    }
                 }
             }
-            return NoContent();
-            //}
+            return BadRequest();
         }
+
     }
 }
