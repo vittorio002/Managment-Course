@@ -3133,11 +3133,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\FMF-Guest\\Desktop\\Triolo\\Deliveries\\Managment-Course\\UnitTest\\UnitTest.csproj",
+      "projectUniqueName": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\UnitTest\\UnitTest.csproj",
       "projectName": "UnitTest",
-      "projectPath": "C:\\Users\\FMF-Guest\\Desktop\\Triolo\\Deliveries\\Managment-Course\\UnitTest\\UnitTest.csproj",
+      "projectPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\UnitTest\\UnitTest.csproj",
       "packagesPath": "C:\\Users\\FMF-Guest\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\FMF-Guest\\Desktop\\Triolo\\Deliveries\\Managment-Course\\UnitTest\\obj\\",
+      "outputPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\UnitTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3159,11 +3159,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\FMF-Guest\\Desktop\\Triolo\\Deliveries\\Managment-Course\\Classi\\Classi.csproj": {
-              "projectPath": "C:\\Users\\FMF-Guest\\Desktop\\Triolo\\Deliveries\\Managment-Course\\Classi\\Classi.csproj"
+            "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Classi\\Classi.csproj": {
+              "projectPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Classi\\Classi.csproj"
             },
-            "C:\\Users\\FMF-Guest\\Desktop\\Triolo\\Deliveries\\Managment-Course\\DataApi\\Data.csproj": {
-              "projectPath": "C:\\Users\\FMF-Guest\\Desktop\\Triolo\\Deliveries\\Managment-Course\\DataApi\\Data.csproj"
+            "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\DataApi\\Data.csproj": {
+              "projectPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\DataApi\\Data.csproj"
             }
           }
         }

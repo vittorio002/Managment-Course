@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "E5VAT4FXll03QHblq+DoJYrQThRThXBFB9AcryqxD+Rd8vRN09xK/KjhJRGj0tB6GqgzItcrneKw3vjA+nPH+g==",
+  "dgSpecHash": "dASkmx6PYg+UCxV8ESdN7fmo3r8k6uls6PXaSpnW0yU2oJSyYF+9iUUpBWyNoS+XkcQUwPl3c6K5RYW16A14Pg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\FMF-Guest\\Desktop\\Triolo\\Deliveries\\Managment-Course\\Classi\\Classi.csproj",
+  "projectFilePath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Classi\\Classi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\FMF-Guest\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
