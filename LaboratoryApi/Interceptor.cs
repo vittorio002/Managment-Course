@@ -2,21 +2,21 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 public class TokenValidation : ActionFilterAttribute
 {
     public override void OnActionExecuting(ActionExecutingContext filterContext)
     {
+            if (!filterContext.HttpContext.Request.Headers.TryGetValue("Authentication", out var token) || !IsValidToken(token))
+            {
+                filterContext.Result = new Microsoft.AspNetCore.Mvc.UnauthorizedResult();
+                return;
 
-        if (!filterContext.HttpContext.Request.Headers.TryGetValue("Authentication", out var token) || !IsValidToken(token))
-        {
-            filterContext.Result = new Microsoft.AspNetCore.Mvc.UnauthorizedResult();
-            return;
 
-
-        }
-        base.OnActionExecuting(filterContext);
-
+            }
+            base.OnActionExecuting(filterContext);
     }
 
     private bool IsValidToken(string token)
@@ -58,7 +58,7 @@ public class TokenValidation : ActionFilterAttribute
                                 long Takems = long.Parse(t[1]);
                                 double minutesDifference = (newMilliseconds - Takems) / (1000.0 * 60);
 
-                                string newToken = token +"-"+ newMilliseconds;
+                                string newToken = token + "-" + newMilliseconds;
 
                                 if (minutesDifference <= 5)
                                 {
@@ -88,4 +88,26 @@ public class TokenValidation : ActionFilterAttribute
         }
         return false;
     }
+    /*private static string Decrypt(string encryptedData)
+    {
+        using (Aes aesAlg = Aes.Create())
+        {
+            string key = "token";
+            aesAlg.Key = Encoding.UTF8.GetBytes(key);
+            aesAlg.IV = new byte[16];
+
+            ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+            using (MemoryStream msDecrypt = new MemoryStream(Convert.FromBase64String(encryptedData)))
+            {
+                using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                {
+                    using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                    {
+                        return srDecrypt.ReadToEnd();
+                    }
+                }
+            }
+        }
+    }*/
 }

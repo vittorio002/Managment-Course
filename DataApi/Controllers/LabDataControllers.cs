@@ -41,12 +41,23 @@ namespace Data.Controllers
             }
         }
         private void Deserialize(){
+            try
+            {
             string json = RunJson.ReadLabFile();
             _labs = JsonConvert.DeserializeObject<List<Lab>>(json);
+            }
+            catch(Exception ex){
+                BadRequest(ex);
+            }
         }       
         private void Serialize(){
+            try{
             string json = JsonConvert.SerializeObject(_labs);
             RunJson.WriteLabFile(json);
+            }
+            catch(Exception ex){
+                BadRequest(ex);
+            }
         }
     }
 }

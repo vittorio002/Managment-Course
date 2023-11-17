@@ -31,7 +31,10 @@ async function login() {
                 alert('Token non valido. Effettua il login.');
                 sessionStorage.removeItem("token");
                 location.reload();
-            } else {
+            }else if(xhr.status === 500){
+              alert('Connection Error');
+            }
+             else {
                 alert('Errore nella richiesta: ' + xhr.statusText);
             }
           }
@@ -42,7 +45,10 @@ async function login() {
             alert('Token non valido. Effettua il login.');
             sessionStorage.removeItem("token");
             location.reload();
-        } else {
+        }else if(xhr.status === 500){
+          alert('Connection Error');
+        }
+        else {
             alert('Errore nella richiesta: ' + xhr.statusText);
         }
       }
@@ -182,7 +188,10 @@ async function gestisciClic(event) {
                           alert('Token non valido. Effettua il login.');
                           sessionStorage.removeItem("token");
                           location.reload();
-                      } else {
+                      } else if(xhr.status === 500){
+                        alert('Connection Error');
+                      }
+                       else {
                           alert('Errore nella richiesta: ' + xhr.statusText);
                       }
                     }
@@ -202,7 +211,10 @@ async function gestisciClic(event) {
                 alert('Token non valido. Effettua il login.');
                 sessionStorage.removeItem("token");
                 location.reload();
-            } else {
+            } else if(xhr.status === 500){
+              alert('Connection Error');
+            }
+             else {
                 alert('Errore nella richiesta: ' + xhr.statusText);
             }
           }
@@ -262,7 +274,10 @@ async function gestisciClic(event) {
                       alert('Token non valido. Effettua il login.');
                       sessionStorage.removeItem("token");
                       location.reload();
-                  } else {
+                  } else if(xhr.status === 500){
+                    alert('Connection Error');
+                  }
+                   else {
                       alert('Errore nella richiesta: ' + xhr.statusText);
                   }
                 }
@@ -286,7 +301,10 @@ async function gestisciClic(event) {
               alert('Token non valido. Effettua il login.');
               sessionStorage.removeItem("token");
               location.reload();
-          } else {
+          } else if(xhr.status === 500){
+            alert('Connection Error');
+          }
+           else {
               alert('Errore nella richiesta: ' + xhr.statusText);
           }
         }
@@ -334,7 +352,10 @@ async function gestisciClic(event) {
                         alert('Token non valido. Effettua il login.');
                         sessionStorage.removeItem("token");
                         location.reload();
-                    } else {
+                    } else if(xhr.status === 500){
+                      alert('Connection Error');
+                    }
+                     else {
                         alert('Errore nella richiesta: ' + xhr.statusText);
                     }
                   }
@@ -374,7 +395,10 @@ async function gestisciClic(event) {
                       alert('Token non valido. Effettua il login.');
                       sessionStorage.removeItem("token");
                       location.reload();
-                  } else {
+                  } else if(xhr.status === 500){
+                    alert('Connection Error');
+                  }
+                   else {
                       alert('Errore nella richiesta: ' + xhr.statusText);
                   }
                 }
@@ -426,7 +450,10 @@ async function gestisciClic(event) {
                           alert('Token non valido. Effettua il login.');
                           sessionStorage.removeItem("token");
                           location.reload();
-                      } else {
+                      } else if(xhr.status === 500){
+                        alert('Connection Error');
+                      }
+                       else {
                           alert('Errore nella richiesta: ' + xhr.statusText);
                       }
                     }
@@ -443,7 +470,10 @@ async function gestisciClic(event) {
                   alert('Token non valido. Effettua il login.');
                   sessionStorage.removeItem("token");
                   location.reload();
-              } else {
+              } else if(xhr.status === 500){
+                alert('Connection Error');
+              }
+               else {
                   alert('Errore nella richiesta: ' + xhr.statusText);
               }
             }
@@ -454,7 +484,10 @@ async function gestisciClic(event) {
               alert('Token non valido. Effettua il login.');
               sessionStorage.removeItem("token");
               location.reload();
-          } else {
+          } else if(xhr.status === 500){
+            alert('Connection Error');
+          }
+           else {
               alert('Errore nella richiesta: ' + xhr.statusText);
           }
         }
@@ -517,7 +550,10 @@ async function gestisciClic(event) {
                       alert('Token non valido. Effettua il login.');
                       sessionStorage.removeItem("token");
                       location.reload();
-                  } else {
+                  } else if(xhr.status === 500){
+                    alert('Connection Error');
+                  }
+                   else {
                       alert('Errore nella richiesta: ' + xhr.statusText);
                   }
                 }
@@ -535,7 +571,10 @@ async function gestisciClic(event) {
               alert('Token non valido. Effettua il login.');
               sessionStorage.removeItem("token");
               location.reload();
-          } else {
+          } else if(xhr.status === 500){
+            alert('Connection Error');
+          }
+           else {
               alert('Errore nella richiesta: ' + xhr.statusText);
           }
         }
@@ -571,7 +610,10 @@ async function Modify() {
           alert('Token non valido. Effettua il login.');
           sessionStorage.removeItem("token");
           location.reload();
-      } else {
+      } else if(xhr.status === 500){
+        alert('Connection Error');
+      }
+       else {
           alert('Errore nella richiesta: ' + xhr.statusText);
       }
     }
@@ -600,7 +642,10 @@ function Add() {
           alert('Token non valido. Effettua il login.');
           sessionStorage.removeItem("token");
           location.reload();
-      } else {
+      } else if(xhr.status === 500){
+        alert('Connection Error');
+      }
+       else {
           alert('Errore nella richiesta: ' + xhr.statusText);
       }
     }
@@ -640,7 +685,10 @@ function ModifyPc() {
           alert('Token non valido. Effettua il login.');
           sessionStorage.removeItem("token");
           location.reload();
-      } else {
+      } else if(xhr.status === 500){
+        alert('Connection Error');
+      }
+       else {
           alert('Errore nella richiesta: ' + xhr.statusText);
       }
     }
@@ -738,3 +786,19 @@ function selezionaData() {
   dateInput.value = giorno + "/" + mese + "/" + anno;
   document.getElementById("calendar").style.display = "none";
 }
+
+/*function encrypt(data) {
+  const key = "token";
+  const cipher = crypto.createCipher('aes-256-cbc', key);
+  let encryptedData = cipher.update(data, 'utf-8', 'hex');
+  encryptedData += cipher.final('hex');
+  return encryptedData;
+}
+
+function decrypt(encryptedData) {
+  const key = "token";
+  const decipher = crypto.createDecipher('aes-256-cbc', key);
+  let decryptedData = decipher.update(encryptedData, 'hex', 'utf-8');
+  decryptedData += decipher.final('utf-8');
+  return decryptedData;
+}*/

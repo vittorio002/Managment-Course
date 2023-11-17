@@ -2,7 +2,7 @@ namespace Data
 {
     public class RunJson
     {
-        public static string ReadUserFile() // Read the file and write in the Dictionaries
+        public static string ReadUserFile()
         {
             try
             {
@@ -18,7 +18,7 @@ namespace Data
             }
         }
 
-        public static string ReadLabFile() // Read the file and write in the Dictionaries
+        public static string ReadLabFile()
         {
             try
             {
@@ -33,7 +33,7 @@ namespace Data
                 return null;
             }
         }
-        public static string ReadResFile() // Read the file and write in the Dictionaries
+        public static string ReadResFile()
         {
             try
             {
@@ -48,7 +48,7 @@ namespace Data
                 return null;
             }
         }
-        public static void WriteUserFile(string json) // Write the file with the Sictionaries
+        public static void WriteUserFile(string json)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace Data
                 Console.WriteLine("Errore durante la scrittura dei file: " + ex.Message);
             }
         }
-        public static void WriteLabFile(string json) // Write the file with the Sictionaries
+        public static void WriteLabFile(string json)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace Data
                 Console.WriteLine("Errore durante la scrittura dei file: " + ex.Message);
             }
         }
-         public static void WriteResFile(string json) // Write the file with the Sictionaries
+         public static void WriteResFile(string json)
         {
             try
             {

@@ -7,20 +7,26 @@ using Requests;
 [Route("Userapi/[controller]")]
 public class AuthController : ControllerBase
 {
-    //private string Nonce;
     [HttpPost("GetNonce")]
     public async Task<ActionResult<string>> GetNonce([FromBody] string Email)
     {
-        using (HttpClient request = new HttpClient())
+        try
         {
-            string apiUrl = "http://localhost:5246/Datapi/UserData/User/GetNonce";
-            StringContent jsonContent = new StringContent(JsonConvert.SerializeObject(Email), Encoding.UTF8, "application/json");
-            HttpResponseMessage response = request.PostAsync(apiUrl, jsonContent).Result;
-            if (response.IsSuccessStatusCode)
+            using (HttpClient request = new HttpClient())
             {
-                string data = await response.Content.ReadAsStringAsync();
-                return Content(data);
+                string apiUrl = "http://localhost:5246/Datapi/UserData/User/GetNonce";
+                StringContent jsonContent = new StringContent(JsonConvert.SerializeObject(Email), Encoding.UTF8, "application/json");
+                HttpResponseMessage response = request.PostAsync(apiUrl, jsonContent).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = await response.Content.ReadAsStringAsync();
+                    return Content(data);
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex);
         }
         return NotFound();
     }
@@ -32,18 +38,12 @@ public class AuthController : ControllerBase
             using (HttpClient UserRequest = new HttpClient())
             {
                 string apiUrl = "http://localhost:5246/Datapi/UserData/User/Login";
-                /*var requestData = new
-                {
-                    Email = request.Email,
-                    Password = request.Password,
-                    //Nonce = Nonce
-                };*/
+
                 StringContent jsonContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await UserRequest.PostAsync(apiUrl, jsonContent);
                 if (response.IsSuccessStatusCode)
                 {
                     string data = await response.Content.ReadAsStringAsync();
-                    //User? user = JsonConvert.DeserializeObject<User>(data);
 
                     if (data == null)
                     {
@@ -53,9 +53,9 @@ public class AuthController : ControllerBase
                     {
                         string d = data;
                         long tick = DateTime.Now.Ticks;
-                        long ms = tick/TimeSpan.TicksPerMillisecond;
-                        d+="-"+ms;
-                        
+                        long ms = tick / TimeSpan.TicksPerMillisecond;
+                        d += "-" + ms;
+
                         using (HttpClient client = new HttpClient())
                         {
                             string Url = "http://localhost:5246/Datapi/UserData/User/StorageToken";
@@ -64,6 +64,7 @@ public class AuthController : ControllerBase
                             if (response.IsSuccessStatusCode)
                             {
                                 string Data = await response.Content.ReadAsStringAsync();
+                                //string encryptedData = Encrypt(data);
                                 return Content(data);
                             }
                         }
@@ -81,4 +82,28 @@ public class AuthController : ControllerBase
         }
         return StatusCode(500, "internal error ");
     }
+    /*private static string Encrypt(string data)
+   {
+       using (Aes aesAlg = Aes.Create())
+       {
+           string key = "token";
+           aesAlg.Key = Encoding.UTF8.GetBytes(key);
+           aesAlg.IV = new byte[16];
+
+           ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+           using (MemoryStream msEncrypt = new MemoryStream())
+           {
+               using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+               {
+                   using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                   {
+                       swEncrypt.Write(data);
+                   }
+               }
+               return Convert.ToBase64String(msEncrypt.ToArray());
+           }
+       }
+   }*/
+
 }

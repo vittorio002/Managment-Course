@@ -9,6 +9,12 @@ namespace Data.Controllers
     [Route("Datapi/[controller]/User")]
     public class UserDataController : ControllerBase
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public UserDataController(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
         private static List<User>? _users = new();
 
         [HttpGet]
@@ -50,9 +56,8 @@ namespace Data.Controllers
             {
                 Deserialize();
                 User? user = _users.Find(x => x.Email == Email);
-                
+
                 string n = user.newNONCE();
-                //_users.Add(user);
                 Serialize();
                 return n;
             }
@@ -78,30 +83,35 @@ namespace Data.Controllers
         }
         [HttpPost]
         [Route("StorageToken")]
-        public ActionResult AssignToken([FromBody]string token){
+        public ActionResult AssignToken([FromBody] string token)
+        {
             try
             {
                 string[] t = token.Split("-");
                 User? user = JsonConvert.DeserializeObject<User>(t[0]);
                 Deserialize();
-                User u = _users.Find(us=>us.Email == user.Email);
+                User u = _users.Find(us => us.Email == user.Email);
                 u.setToken(token);
                 Serialize();
                 return Ok();
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 return BadRequest(ex);
             }
         }
         [HttpPost]
         [Route("TakeToken")]
-        public ActionResult<string> TakeToken([FromBody]string email){
+        public ActionResult<string> TakeToken([FromBody] string email)
+        {
             try
-            {Deserialize();
-            User user = _users.Find(u=>u.Email == email);
-            return user==null? NotFound() : user.getToken();
+            {
+                Deserialize();
+                User user = _users.Find(u => u.Email == email);
+                return user == null ? NotFound() : user.getToken();
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 return BadRequest(ex);
             }
         }
@@ -167,13 +177,27 @@ namespace Data.Controllers
         }
         private void Deserialize()
         {
-            string json = RunJson.ReadUserFile();
-            _users = JsonConvert.DeserializeObject<List<User>>(json);
+            try
+            {
+                string json = RunJson.ReadUserFile();
+                _users = JsonConvert.DeserializeObject<List<User>>(json);
+            }
+            catch (Exception ex)
+            {
+                BadRequest(ex);
+            }
         }
         private void Serialize()
         {
-            string json = JsonConvert.SerializeObject(_users);
-            RunJson.WriteUserFile(json);
+            try
+            {
+                string json = JsonConvert.SerializeObject(_users);
+                RunJson.WriteUserFile(json);
+            }
+            catch (Exception ex)
+            {
+                BadRequest(ex);
+            }
         }
     }
 }

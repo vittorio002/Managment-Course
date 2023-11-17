@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YNd1qQ1o8Y5HhOgl8dqFYqlKXaUk+kMXM7ooxlnLBHXHX7Qbe17W+EiZ6AIj6TPejZkMxu3ffG9wvHf5fo5vbg==",
+  "dgSpecHash": "pGIAOFfRhgG7fvBdWBbwLyl/o65KoJ2j/kgi4L3IRHF1DVlgqFjxS61sb5xGBv9GTzzRkeDv9GZ0563hbGqdrQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\LaboratoryApi\\LaboratoryApi.csproj",
+  "projectFilePath": "C:\\Users\\FMF-Guest\\Desktop\\Triolo\\Deliveries\\Managment-Course\\LaboratoryApi\\LaboratoryApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\FMF-Guest\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.11\\microsoft.aspnetcore.openapi.7.0.11.nupkg.sha512",
     "C:\\Users\\FMF-Guest\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

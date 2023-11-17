@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Classi\\Classi.csproj": {}
+    "C:\\Users\\FMF-Guest\\Desktop\\Triolo\\Deliveries\\Managment-Course\\Classi\\Classi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Classi\\Classi.csproj": {
+    "C:\\Users\\FMF-Guest\\Desktop\\Triolo\\Deliveries\\Managment-Course\\Classi\\Classi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Classi\\Classi.csproj",
+        "projectUniqueName": "C:\\Users\\FMF-Guest\\Desktop\\Triolo\\Deliveries\\Managment-Course\\Classi\\Classi.csproj",
         "projectName": "Classi",
-        "projectPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Classi\\Classi.csproj",
+        "projectPath": "C:\\Users\\FMF-Guest\\Desktop\\Triolo\\Deliveries\\Managment-Course\\Classi\\Classi.csproj",
         "packagesPath": "C:\\Users\\FMF-Guest\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FMF-Guest\\AppData\\Managment-Cours\\Classi\\obj\\",
+        "outputPath": "C:\\Users\\FMF-Guest\\Desktop\\Triolo\\Deliveries\\Managment-Course\\Classi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
