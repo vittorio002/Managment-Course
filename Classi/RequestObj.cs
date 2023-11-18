@@ -1,5 +1,7 @@
 namespace Requests;
 
+//classes to take the argument from body in controllers call
+
 public class LoginRequest
 {
     public string? Email { get; set; }

@@ -4,11 +4,12 @@ using System.Text;
 
 [ApiController]
 [Route("Reservation/[controller]")]
-[TokenValidation]
+[TokenValidation]   //interceptor for validation token
 public class ReservationController : ControllerBase
 {
-    private static List<Reservation> _reservation = new();
+    private static List<Reservation> _reservation = new(); //Reservations List
 
+    //get all reservation
     [HttpGet]
     public async Task<ActionResult<List<Reservation>>> GetAll()
     {
@@ -31,12 +32,14 @@ public class ReservationController : ControllerBase
         }
         return Ok(_reservation);
     }
+
+    //add new reservation
     [HttpPost]
     public async Task<ActionResult> Post([FromBody] Reservation reservation)
     {
         try
         {
-            using (HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient()) //call for update the json in data service
             {
                 string Url = "http://localhost:5246/Datapi/resData/Reservation";
 
@@ -50,7 +53,7 @@ public class ReservationController : ControllerBase
                 {
                     string responseData = await response.Content.ReadAsStringAsync();
 
-                    using (HttpClient PcAddR = new HttpClient())
+                    using (HttpClient PcAddR = new HttpClient()) //call for add the reservation(data and hour) in the pc too
                     {
                         string Url2 = "http://localhost:5033/Labapi/Lab/AddReservation";
 
@@ -83,13 +86,14 @@ public class ReservationController : ControllerBase
         }
     }
 
+    //get all reservation from specific user
     [HttpPost]
     [Route("Specific")]
     public async Task<ActionResult> GetUserReservation([FromBody] string email)
     {
         try
         {
-            using (HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())//call to get all reservation from data service
             {
                 string apiUrl = "http://localhost:5246/Datapi/resData/Reservation";
                 HttpResponseMessage response = client.GetAsync(apiUrl).Result;
@@ -124,12 +128,13 @@ public class ReservationController : ControllerBase
         return BadRequest();
     }
 
+    //delete one reservation
     [HttpDelete]
     public async Task<ActionResult> Delete([FromBody] Reservation reservation)
     {
         try
         {
-            using (HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())//call for delet one reservation from json in data service
             {
                 string Url = "http://localhost:5246/Datapi/resData/Reservation";
 
@@ -148,7 +153,7 @@ public class ReservationController : ControllerBase
                 {
                     string responseData = await response.Content.ReadAsStringAsync();
 
-                    using (HttpClient client2 = new HttpClient())
+                    using (HttpClient client2 = new HttpClient()) //call for remove the reservation from pc
                     {
                         string Url2 = "http://localhost:5033/Labapi/Lab/RemoveReservation";
 

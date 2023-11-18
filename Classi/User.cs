@@ -19,16 +19,20 @@ namespace UserApi
             role = new List<string>{"user"};
         }
 
+        //function to sum the password and the nonce
         public string encrypting(string pwd, string NONCE)
         {
             return pwd += NONCE;
         }
 
+        //verify if the client password(password+nonce) is equal to this password+nonce
         public bool Verify(string psw)
         {
             string cryptPsw = this.Password + this.Nonce;
             return psw == cryptPsw;
         }
+
+        //generate new nonce, set in the property and return the value
         public string newNONCE()
         {
             string num = "";
@@ -41,12 +45,18 @@ namespace UserApi
             this.Nonce = num;
             return num;
         }
+
+        //take the nonce
         public string GetNonce(){
             return this.Nonce;
         }
+
+        //set the token in the nonce property
         public void setToken(string token){
             this.Nonce = token;
         }
+
+        //take the token
         public string getToken(){
             return this.Nonce;
         }

@@ -7,7 +7,9 @@ namespace Data.Controllers
     [Route("Datapi/[controller]/Reservation")]
     public class ResDataController : ControllerBase
     {
-        private static List<Reservation> _reservation = new List<Reservation>();
+        private static List<Reservation> _reservation = new List<Reservation>(); //Reservation List
+
+        //return all reservation
         [HttpGet]
         public ActionResult<List<Reservation>> Get()
         {
@@ -21,6 +23,8 @@ namespace Data.Controllers
                 return BadRequest(ex);
             }
         }
+
+        //add one reservation
         [HttpPost]
         public ActionResult Post([FromBody] Reservation reservation)
         {
@@ -36,6 +40,8 @@ namespace Data.Controllers
                 return BadRequest(ex);
             }
         }
+
+        //take one reservation in input and delete the corresponding
         [HttpDelete]
         public ActionResult Delete([FromBody] Reservation reservation)
         {
@@ -52,6 +58,8 @@ namespace Data.Controllers
                 return BadRequest(ex);
             }
         }
+
+        //call the method for read the json and deserialize in the Lab list 
         private void Deserialize()
         {
             try
@@ -63,6 +71,8 @@ namespace Data.Controllers
                 BadRequest(ex);
             }
         }
+
+        //serialize the list in string and send to metod for whrite the json
         private void Serialize()
         {
             try{

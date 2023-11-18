@@ -2,9 +2,8 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Security.Cryptography;
-using Microsoft.AspNetCore.Http.HttpResults;
 
+//the interceptor where is defined he start first the run of method, for verify if the token is valid
 public class TokenValidation : ActionFilterAttribute
 {
     public override void OnActionExecuting(ActionExecutingContext filterContext)

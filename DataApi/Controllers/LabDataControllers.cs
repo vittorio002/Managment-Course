@@ -9,8 +9,9 @@ namespace Data.Controllers
     [Route("Datapi/[controller]/Lab")]
     public class LabDataController : ControllerBase
     {
-        private static List<Lab> _labs = new();
+        private static List<Lab> _labs = new(); //Laboratory List
         
+        //return all Labs
         [HttpGet]
         public ActionResult<List<Lab>> Get()
         {
@@ -23,6 +24,7 @@ namespace Data.Controllers
             }
         }
         
+        //take Object Lab and modifay the lab in the json 
         [HttpPut]
         public ActionResult Put([FromBody] Lab lab)
         {
@@ -39,6 +41,8 @@ namespace Data.Controllers
                 return BadRequest(e);
             }
         }
+
+        //call the method for read the json and deserialize in the Lab list       
         private void Deserialize(){
             try
             {
@@ -49,6 +53,8 @@ namespace Data.Controllers
                 BadRequest(ex);
             }
         }       
+
+        //serialize the list in string and send to metod for whrite the json
         private void Serialize(){
             try{
             string json = JsonConvert.SerializeObject(_labs);

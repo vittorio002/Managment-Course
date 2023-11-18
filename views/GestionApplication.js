@@ -1,62 +1,40 @@
+import {functions} from './functions.js';
+import {UserCall} from './Calls/Usercall.js';
+import {LabCall} from './Calls/LabCall.js';
+import {ResevationCall} from './Calls/ReservationCall.js'
+
 window.onload=checkToken;
 
-function checkToken(){
-  if(sessionStorage.getItem("token"))
-    showApplication();
-}
 
 async function login() {
   if(!sessionStorage.getItem("token")){
     let email = document.getElementById("login-email").value;
 
-      try {
-        const response = await fetch("http://localhost:5117/Userapi/Auth/GetNonce", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(email),
-        });
+        const response = UserCall.Nonce(email);
     
-        if (response.ok) {
-
+        if (!response.ok) {
+          handleError(response.status);
+        }
+        else{
           const nonce = await response.json();
           let password = document.getElementById("login-password").value;
         const newPassword = password + nonce;
     
-        const response2 = await fetch("http://localhost:5117/Userapi/Auth/Login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ Email: email, Password: newPassword }),
-        });
+        const response2 = UserCall.LoginAndToken(email, newPassword);
     
         if (!response2.ok) {
           handleError(response2.status);
         }
-    
-        const token = await response2.json().then((value)=>sessionStorage.setItem("token",JSON.stringify(value)));
+        else{
+          await response2.json().then((value)=>sessionStorage.setItem("token",JSON.stringify(value)));
         showApplication();
         }
-    
-      } catch (error) {
-        handleError(error);
-      }
+        }
+      
   } else showApplication();
 }
 
-function handleError(status) {
-  if (status === 401) {
-    alert('Token non valido. Effettua il login.');
-    sessionStorage.removeItem("token");
-    location.reload();
-  } else if (status === 500) {
-    alert('Connection Error');
-  } else {
-    alert('Errore nella richiesta: ' + status);
-  }
-}
+
 
 async function register() {
   const email = document.getElementById("register-email").value;

@@ -9,8 +9,9 @@ namespace Data.Controllers
     [Route("Datapi/[controller]/User")]
     public class UserDataController : ControllerBase
     {
-        private static List<User>? _users = new();
+        private static List<User>? _users = new(); //users list
 
+        //return all users
         [HttpGet]
         public ActionResult<List<User>> GetAll()
         {
@@ -25,6 +26,8 @@ namespace Data.Controllers
                 return BadRequest(e);
             }
         }
+
+        //take the email and password(whit the nonce), and verify if the credential are true
         [HttpPost]
         [Route("Login")]
         public ActionResult<User> Login([FromBody] LoginRequest request)
@@ -42,6 +45,8 @@ namespace Data.Controllers
                 return BadRequest(e);
             }
         }
+
+        //generate nonce inside the user who is logging
         [HttpPost]
         [Route("GetNonce")]
         public ActionResult<string> GetNonce([FromBody] string Email)
@@ -60,6 +65,8 @@ namespace Data.Controllers
                 return BadRequest(e);
             }
         }
+
+        //verify if the user alredy exist
         [HttpPost]
         [Route("GetUser")]
         public ActionResult<User> GetSingle([FromBody] string Email)
@@ -75,6 +82,8 @@ namespace Data.Controllers
                 return BadRequest(e);
             }
         }
+
+        //take the token and set in a property of user
         [HttpPost]
         [Route("StorageToken")]
         public ActionResult AssignToken([FromBody] string token)
@@ -94,6 +103,8 @@ namespace Data.Controllers
                 return BadRequest(ex);
             }
         }
+
+        //serch the user and take the token
         [HttpPost]
         [Route("TakeToken")]
         public ActionResult<string> TakeToken([FromBody] string email)
@@ -109,6 +120,8 @@ namespace Data.Controllers
                 return BadRequest(ex);
             }
         }
+
+        //add one user
         [HttpPost("Add")]
         public ActionResult Post([FromBody] User user)
         {
@@ -128,6 +141,8 @@ namespace Data.Controllers
                 return BadRequest(e);
             }
         }
+
+        //modify one specific user
         [HttpPut]
         public ActionResult Put([FromBody] User user)
         {
@@ -148,6 +163,8 @@ namespace Data.Controllers
                 return BadRequest(e);
             }
         }
+
+        //delete one user
         [HttpDelete]
         public ActionResult Delete([FromBody] string email)
         {
@@ -167,6 +184,8 @@ namespace Data.Controllers
                 return BadRequest(e);
             }
         }
+
+        //call the method for read the json and deserialize in the Lab list 
         private void Deserialize()
         {
             try
@@ -179,6 +198,8 @@ namespace Data.Controllers
                 BadRequest(ex);
             }
         }
+
+        //serialize the list in string and send to metod for whrite the json
         private void Serialize()
         {
             try

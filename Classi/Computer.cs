@@ -16,6 +16,7 @@ namespace LaboratoryApi
             Reserve = new List<ReserveRequest>();
         }
 
+        // generate a random id from 10 caracters 
         public string randomId(){
             string id = "";
             for(int i = 0; i < 10; i++){
