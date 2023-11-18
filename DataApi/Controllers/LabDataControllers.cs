@@ -30,8 +30,7 @@ namespace Data.Controllers
             Deserialize();
 
             Lab? l =_labs.Find(la => la.Name  == lab.Name);
-            _labs.Remove(l);
-            _labs.Add(lab);
+            l.computers = lab.computers;
             Serialize();
 
             return Ok();

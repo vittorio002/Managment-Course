@@ -16,7 +16,7 @@ public class AuthController : ControllerBase
             {
                 string apiUrl = "http://localhost:5246/Datapi/UserData/User/GetNonce";
                 StringContent jsonContent = new StringContent(JsonConvert.SerializeObject(Email), Encoding.UTF8, "application/json");
-                HttpResponseMessage response = request.PostAsync(apiUrl, jsonContent).Result;
+                HttpResponseMessage response = await request.PostAsync(apiUrl, jsonContent);
                 if (response.IsSuccessStatusCode)
                 {
                     string data = await response.Content.ReadAsStringAsync();

@@ -12,7 +12,7 @@ namespace LaboratoryApi.Controllers
         private static List<Lab> _labs = new List<Lab>();
 
         [HttpGet]
-        [TokenValidation]
+        //[TokenValidation]
         public ActionResult<List<Lab>> GetAllLab()
         {
             try
@@ -236,11 +236,9 @@ namespace LaboratoryApi.Controllers
 
                             if (c != null)
                             {
-                                laboratory.computers.Remove(c);
                                 c.program = pc.program;
                                 c.Name = pc.Name;
                                 c.Status = pc.Status;
-                                laboratory.computers.Add(c);
 
                                 using (HttpClient client = new HttpClient())
                                 {
@@ -421,10 +419,8 @@ namespace LaboratoryApi.Controllers
                             Computer pc = lab.computers.Find(c => c.Name == reservation.NamePc);
                             if (pc != null)
                             {
-                                lab.computers.Remove(pc);
                                 ReserveRequest r = pc.Reserve.Find(r => r.Date == reservation.Date && r.Hour == reservation.Hour);
                                 pc.Reserve.Remove(r);
-                                lab.computers.Add(pc);
 
                                 using (HttpClient client = new HttpClient())
                                 {

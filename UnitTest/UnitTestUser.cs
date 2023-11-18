@@ -16,7 +16,7 @@ namespace UnitTests
         public void Initialize()
         {
             _httpContextAccessorMock = new Mock<IHttpContextAccessor>();
-            _userDataController = new UserDataController(_httpContextAccessorMock.Object);
+            _userDataController = new UserDataController();
         }
 
         [TestMethod]
@@ -46,7 +46,7 @@ namespace UnitTests
         {
             var email = "test@example.com";
 
-            var result = _userDataController.Nonce(email);
+            var result = _userDataController.GetNonce(email);
             
             Assert.IsInstanceOfType(result, typeof(OkObjectResult));
         }

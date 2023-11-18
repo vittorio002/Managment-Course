@@ -9,12 +9,6 @@ namespace Data.Controllers
     [Route("Datapi/[controller]/User")]
     public class UserDataController : ControllerBase
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public UserDataController(IHttpContextAccessor httpContextAccessor)
-        {
-            _httpContextAccessor = httpContextAccessor;
-        }
         private static List<User>? _users = new();
 
         [HttpGet]
@@ -50,7 +44,7 @@ namespace Data.Controllers
         }
         [HttpPost]
         [Route("GetNonce")]
-        public ActionResult<string> Nonce([FromBody] string Email)
+        public ActionResult<string> GetNonce([FromBody] string Email)
         {
             try
             {
@@ -142,10 +136,8 @@ namespace Data.Controllers
                 Deserialize();
 
                 User? u = _users.Find(la => la.Email == user.Email);
-                _users.Remove(u);
                 u.Name = user.Name;
                 u.role = user.role;
-                _users.Add(u);
 
                 Serialize();
 

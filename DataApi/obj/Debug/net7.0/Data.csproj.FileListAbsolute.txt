@@ -153,3 +153,4 @@ C:\Users\FMF-Guest\Desktop\Triolo\Deliveries\Managment-Course\DataApi\obj\Debug\
 C:\Users\FMF-Guest\Desktop\Triolo\Deliveries\Managment-Course\DataApi\obj\Debug\net7.0\Data.pdb
 C:\Users\FMF-Guest\Desktop\Triolo\Deliveries\Managment-Course\DataApi\obj\Debug\net7.0\Data.genruntimeconfig.cache
 C:\Users\FMF-Guest\Desktop\Triolo\Deliveries\Managment-Course\DataApi\obj\Debug\net7.0\ref\Data.dll
+C:\Users\Vittorio\AppData\Managment-Course\DataApi\bin\Debug\net7.0\reservation.json

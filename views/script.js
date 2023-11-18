@@ -8,52 +8,54 @@ function checkToken(){
 async function login() {
   if(!sessionStorage.getItem("token")){
     let email = document.getElementById("login-email").value;
-    $.ajax({
-      method: "POST",
-      url: "http://localhost:5117/Userapi/Auth/GetNonce",
-      contentType: "application/json",
-      data: JSON.stringify(email),
-      success: function (response) {
-        let nonce = response;
-        let password = document.getElementById("login-password").value;
-        password += nonce;
-        $.ajax({
+
+      try {
+        const response = await fetch("http://localhost:5117/Userapi/Auth/GetNonce", {
           method: "POST",
-          url: "http://localhost:5117/Userapi/Auth/Login",
-          contentType: "application/json",
-          data: JSON.stringify({ Email: email, Password: password }),
-          success: function (token) {
-            sessionStorage.setItem("token", token);
-            showApplication();
+          headers: {
+            "Content-Type": "application/json",
           },
-          error: function(xhr) {
-            if (xhr.status === 401) {
-                alert('Token non valido. Effettua il login.');
-                sessionStorage.removeItem("token");
-                location.reload();
-            }else if(xhr.status === 500){
-              alert('Connection Error');
-            }
-             else {
-                alert('Errore nella richiesta: ' + xhr.statusText);
-            }
-          }
+          body: JSON.stringify(email),
         });
-      },
-      error: function(xhr) {
-        if (xhr.status === 401) {
-            alert('Token non valido. Effettua il login.');
-            sessionStorage.removeItem("token");
-            location.reload();
-        }else if(xhr.status === 500){
-          alert('Connection Error');
+    
+        if (response.ok) {
+
+          const nonce = await response.json();
+          let password = document.getElementById("login-password").value;
+        const newPassword = password + nonce;
+    
+        const response2 = await fetch("http://localhost:5117/Userapi/Auth/Login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ Email: email, Password: newPassword }),
+        });
+    
+        if (!response2.ok) {
+          handleError(response2.status);
         }
-        else {
-            alert('Errore nella richiesta: ' + xhr.statusText);
+    
+        const token = await response2.json().then((value)=>sessionStorage.setItem("token",JSON.stringify(value)));
+        showApplication();
         }
+    
+      } catch (error) {
+        handleError(error);
       }
-    });
   } else showApplication();
+}
+
+function handleError(status) {
+  if (status === 401) {
+    alert('Token non valido. Effettua il login.');
+    sessionStorage.removeItem("token");
+    location.reload();
+  } else if (status === 500) {
+    alert('Connection Error');
+  } else {
+    alert('Errore nella richiesta: ' + status);
+  }
 }
 
 async function register() {
