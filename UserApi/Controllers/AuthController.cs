@@ -7,12 +7,13 @@ using Requests;
 [Route("Userapi/[controller]")]
 public class AuthController : ControllerBase
 {
+    //create and take the token from user
     [HttpPost("GetNonce")]
     public async Task<ActionResult<string>> GetNonce([FromBody] string Email)
     {
         try
         {
-            using (HttpClient request = new HttpClient())
+            using (HttpClient request = new HttpClient()) //call to get the nonce from the user in the date service
             {
                 string apiUrl = "http://localhost:5246/Datapi/UserData/User/GetNonce";
                 StringContent jsonContent = new StringContent(JsonConvert.SerializeObject(Email), Encoding.UTF8, "application/json");
@@ -30,12 +31,14 @@ public class AuthController : ControllerBase
         }
         return NotFound();
     }
+
+    //take the request(email and password+nonce) and verify if in the user the password is the same
     [HttpPost("Login")]
     public async Task<ActionResult> Login([FromBody] LoginRequest request)
     {
         try
         {
-            using (HttpClient UserRequest = new HttpClient())
+            using (HttpClient UserRequest = new HttpClient())//call to data service for verify if in the object user the password is the same
             {
                 string apiUrl = "http://localhost:5246/Datapi/UserData/User/Login";
 
@@ -56,7 +59,7 @@ public class AuthController : ControllerBase
                         long ms = tick / TimeSpan.TicksPerMillisecond;
                         d += "-" + ms;
 
-                        using (HttpClient client = new HttpClient())
+                        using (HttpClient client = new HttpClient())//call to storage the token and the date of creation in milliseconds
                         {
                             string Url = "http://localhost:5246/Datapi/UserData/User/StorageToken";
                             StringContent DataContent = new StringContent(JsonConvert.SerializeObject(d), Encoding.UTF8, "application/json");
@@ -64,7 +67,6 @@ public class AuthController : ControllerBase
                             if (response.IsSuccessStatusCode)
                             {
                                 string Data = await response.Content.ReadAsStringAsync();
-                                //string encryptedData = Encrypt(data);
                                 return Content(data);
                             }
                         }
@@ -82,28 +84,4 @@ public class AuthController : ControllerBase
         }
         return StatusCode(500, "internal error ");
     }
-    /*private static string Encrypt(string data)
-   {
-       using (Aes aesAlg = Aes.Create())
-       {
-           string key = "token";
-           aesAlg.Key = Encoding.UTF8.GetBytes(key);
-           aesAlg.IV = new byte[16];
-
-           ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
-
-           using (MemoryStream msEncrypt = new MemoryStream())
-           {
-               using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
-               {
-                   using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
-                   {
-                       swEncrypt.Write(data);
-                   }
-               }
-               return Convert.ToBase64String(msEncrypt.ToArray());
-           }
-       }
-   }*/
-
 }

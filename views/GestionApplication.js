@@ -1,16 +1,26 @@
-import {functions} from './functions.js';
+/*import {functions} from './functions.js';
 import {UserCall} from './Calls/Usercall.js';
 import {LabCall} from './Calls/LabCall.js';
-import {ResevationCall} from './Calls/ReservationCall.js'
+import {ResevationCall} from './Calls/ReservationCall.js'*/
 
 window.onload=checkToken;
 
+function checkToken(){
+  if(sessionStorage.getItem("token"))
+    showApplication();
+}
 
 async function login() {
   if(!sessionStorage.getItem("token")){
     let email = document.getElementById("login-email").value;
 
-        const response = UserCall.Nonce(email);
+        const response = await fetch("http://localhost:5117/Userapi/Auth/GetNonce", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(email),
+        })
     
         if (!response.ok) {
           handleError(response.status);
@@ -20,7 +30,13 @@ async function login() {
           let password = document.getElementById("login-password").value;
         const newPassword = password + nonce;
     
-        const response2 = UserCall.LoginAndToken(email, newPassword);
+        const response2 = await fetch("http://localhost:5117/Userapi/Auth/Login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ Email: email, Password: newPassword }),
+        });
     
         if (!response2.ok) {
           handleError(response2.status);
@@ -34,7 +50,17 @@ async function login() {
   } else showApplication();
 }
 
-
+function handleError(status) {
+  if (status == 401) {
+    alert('Token Not Valid. Go To Login.');
+    sessionStorage.removeItem("token");
+    location.reload();
+  } else if (status == 500) {
+    alert('Connection Error');
+  } else {
+    alert('Request Error');
+  }
+}
 
 async function register() {
   const email = document.getElementById("register-email").value;

@@ -102,7 +102,7 @@ namespace LaboratoryApi.Controllers
 
                     string requestData = JsonConvert.SerializeObject(lab);
 
-                    HttpRequestMessage Putrequest = new HttpRequestMessage
+                    HttpRequestMessage PutRequest = new HttpRequestMessage
                     {
                         Method = HttpMethod.Put,
                         RequestUri = new Uri(Url),
@@ -111,18 +111,18 @@ namespace LaboratoryApi.Controllers
 
                     StringContent content = new StringContent(requestData, Encoding.UTF8, "application/json");
 
-                    HttpResponseMessage Putresponse = await client.SendAsync(Putrequest);
+                    HttpResponseMessage PutResponse = await client.SendAsync(PutRequest);
 
-                    if (response.IsSuccessStatusCode)
+                    if (PutResponse.IsSuccessStatusCode)
                     {
-                        string responseData = await response.Content.ReadAsStringAsync();
+                        string responseData = await PutResponse.Content.ReadAsStringAsync();
+                        return Ok();
                     }
                     else
                     {
                         return BadRequest();
                     }
                 }
-                return BadRequest();
             }
             catch (Exception ex)
             {

@@ -8,7 +8,7 @@ public class TokenValidation : ActionFilterAttribute
 {
     public override void OnActionExecuting(ActionExecutingContext filterContext)
     {
-            if (!filterContext.HttpContext.Request.Headers.TryGetValue("Authentication", out var token) || !IsValidToken(token))
+            if (!filterContext.HttpContext.Request.Headers.TryGetValue("Authentication", out var token) || !IsValidToken(token)) //verify if the token exist and if is valid
             {
                 filterContext.Result = new Microsoft.AspNetCore.Mvc.UnauthorizedResult();
                 return;
@@ -18,8 +18,10 @@ public class TokenValidation : ActionFilterAttribute
             base.OnActionExecuting(filterContext);
     }
 
+//verify if is valid
     private bool IsValidToken(string token)
     {
+        //split the string to get the email
         string[] elements = token.Split(';');
 
         foreach (var element in elements)
@@ -31,7 +33,7 @@ public class TokenValidation : ActionFilterAttribute
 
             if (key.Equals("{\"email\""))
             {
-                string pattern = "\"([^\"]+)\"";
+                string pattern = "\"([^\"]+)\""; //transform json syntax to string
 
                 Match match = Regex.Match(value, pattern);
 
@@ -40,7 +42,7 @@ public class TokenValidation : ActionFilterAttribute
                     string extractedValue = match.Groups[1].Value;
 
 
-                    using (HttpClient client = new HttpClient())
+                    using (HttpClient client = new HttpClient())//call to get the user token
                     {
                         string Url = "http://localhost:5246/Datapi/UserData/User/TakeToken";
                         StringContent content = new StringContent(JsonConvert.SerializeObject(extractedValue), Encoding.UTF8, "application/json");
@@ -48,10 +50,11 @@ public class TokenValidation : ActionFilterAttribute
                         if (response.IsSuccessStatusCode)
                         {
                             string responseData = response.Content.ReadAsStringAsync().Result;
-                            string[] t = responseData.Split("-");
+                            string[] t = responseData.Split("-");//divides the token by the milliseconds of creation or last user action
                             if (t[0] == token)
                             {
-
+                                
+                                //takes the current date and turns it into milliseconds
                                 long newTicks = DateTime.Now.Ticks;
                                 long newMilliseconds = newTicks / TimeSpan.TicksPerMillisecond;
                                 long Takems = long.Parse(t[1]);
@@ -59,26 +62,26 @@ public class TokenValidation : ActionFilterAttribute
 
                                 string newToken = token + "-" + newMilliseconds;
 
-                                if (minutesDifference <= 5)
+                                if (minutesDifference <= 5)//token expires, 5 minutes
                                 {
-                                    using (HttpClient request = new HttpClient())
+                                    using (HttpClient request = new HttpClient()) //called to update the token date
                                     {
                                         string StorageTokenUrl = "http://localhost:5246/Datapi/UserData/User/StorageToken";
                                         StringContent content2 = new StringContent(JsonConvert.SerializeObject(newToken), Encoding.UTF8, "application/json");
                                         HttpResponseMessage response2 = client.PostAsync(StorageTokenUrl, content2).Result;
                                         if (response2.IsSuccessStatusCode)
                                         {
-                                            return true;
+                                            return true;//return true if is valid
                                         }
                                     }
                                 }
                                 else
                                 {
-                                    return false;
+                                    return false;//return false if is expired
                                 }
                             }
                             else
-                                return false;
+                                return false;//return false if is note equal
                         }
                     }
                 }
@@ -87,26 +90,4 @@ public class TokenValidation : ActionFilterAttribute
         }
         return false;
     }
-    /*private static string Decrypt(string encryptedData)
-    {
-        using (Aes aesAlg = Aes.Create())
-        {
-            string key = "token";
-            aesAlg.Key = Encoding.UTF8.GetBytes(key);
-            aesAlg.IV = new byte[16];
-
-            ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
-
-            using (MemoryStream msDecrypt = new MemoryStream(Convert.FromBase64String(encryptedData)))
-            {
-                using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                {
-                    using (StreamReader srDecrypt = new StreamReader(csDecrypt))
-                    {
-                        return srDecrypt.ReadToEnd();
-                    }
-                }
-            }
-        }
-    }*/
 }
