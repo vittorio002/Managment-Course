@@ -3,6 +3,8 @@ import {UserCall} from './Calls/Usercall.js';
 import {LabCall} from './Calls/LabCall.js';
 import {ResevationCall} from './Calls/ReservationCall.js'*/
 
+//const { createElement } = require("react/cjs/react.production.min");
+
 window.onload=checkToken;
 
 function checkToken(){
@@ -70,6 +72,11 @@ async function register() {
   switchToLogin();
 }
 
+async function logout(){
+  sessionStorage.removeItem("token");
+  location.reload();
+}
+
 async function switchToRegistration() {
   document.getElementById("login-page").style.display = "none";
   document.getElementById("registration-page").style.display = "block";
@@ -115,6 +122,7 @@ async function gestisciClic(event) {
       const content = document.getElementById("content");
       content.innerHTML = "";
 
+      const divLabs = document.createElement("div");
       const div = document.createElement("div");
       const inputHour = document.createElement("select");
       inputHour.textContent = "Select Hour";
@@ -132,7 +140,11 @@ async function gestisciClic(event) {
       Date.id = "dateInput";
 
       const inputDate = document.createElement("button");
-      inputDate.textContent = "Select Date";
+      inputDate.style.backgroundImage = 'url(./img/calendar.png)';
+      inputDate.style.backgroundSize = 'cover';
+      inputDate.style.width = '25px';
+      inputDate.style.height = '25px';
+
       inputDate.addEventListener("click", function () {
         toggleCalendario();
       });
@@ -143,9 +155,14 @@ async function gestisciClic(event) {
       pHour.textContent = "Hour: ";
 
       const search = document.createElement("button");
-      search.textContent = "Search";
+      search.style.backgroundImage = 'url(./img/search.jpg)';
+      search.style.backgroundSize = 'cover';
+      search.style.width = '25px';
+      search.style.height = '25px';
+
       search.id = "search";
       search.addEventListener("click", function () {
+        divLabs.innerHTML = "";
         $.ajax({
           method: "POST",
           contentType: "application/json",
@@ -171,7 +188,11 @@ async function gestisciClic(event) {
                   computer.program;
 
                 const ButtonAdd = document.createElement("button");
-                ButtonAdd.textContent = "Reserve";
+                ButtonAdd.style.backgroundImage = 'url(./img/reserve.png)';
+                ButtonAdd.style.backgroundSize = 'cover';
+                ButtonAdd.style.width = '25px';
+                ButtonAdd.style.height = '25px';
+
                 ButtonAdd.addEventListener("click", function () {
                   const TokenString = sessionStorage.getItem("token");
                   const GetToken = JSON.parse(TokenString);
@@ -209,7 +230,8 @@ async function gestisciClic(event) {
                 divLab.appendChild(divPc);
               }
 
-              content.appendChild(divLab);
+              divLabs.appendChild(divLab);
+              content.appendChild(divLabs);
             }
           },
           error: function(xhr) {
@@ -226,12 +248,16 @@ async function gestisciClic(event) {
           }
         });
       });
+      const br = document.createElement('br');
+      const br2 = document.createElement('br');
 
       div.appendChild(pDate);
-      div.appendChild(inputDate);
       div.appendChild(Date);
+      div.appendChild(inputDate);
       div.appendChild(pHour);
       div.appendChild(inputHour);
+      div.appendChild(br);
+      div.appendChild(br2);
       div.appendChild(search);
       content.appendChild(div);
       break;
@@ -252,7 +278,10 @@ async function gestisciClic(event) {
 
             const buttonUser = document.createElement("button");
 
-            buttonUser.textContent = "Modify";
+            buttonUser.style.backgroundImage = 'url(./img/pencil.png)';
+              buttonUser.style.backgroundSize = 'cover';
+              buttonUser.style.width = '25px';
+              buttonUser.style.height = '25px';
             buttonUser.classList.add("Lessrigth");
             buttonUser.addEventListener("click", function () {
               document.getElementById("myModal").style.display = "block";
@@ -264,7 +293,11 @@ async function gestisciClic(event) {
 
             const ButtonDelete = document.createElement("button");
             ButtonDelete.classList.add("rigth");
-            ButtonDelete.textContent = "Delete";
+            ButtonDelete.style.backgroundImage = 'url(./img/delete.jpg)';
+              ButtonDelete.style.backgroundSize = 'cover';
+              ButtonDelete.style.width = '25px';
+              ButtonDelete.style.height = '25px';
+
             ButtonDelete.addEventListener("click", function () {
               $.ajax({
                 method: "DELETE",
@@ -295,7 +328,11 @@ async function gestisciClic(event) {
             content.appendChild(divUser);
           }
           const ButtonAdd = document.createElement("button");
-          ButtonAdd.textContent = "Add User";
+              ButtonAdd.style.backgroundImage = 'url(./img/add.jpg)';
+              ButtonAdd.style.backgroundSize = 'cover';
+              ButtonAdd.style.width = '25px';
+              ButtonAdd.style.height = '25px';
+
           ButtonAdd.addEventListener("click", function () {
             document.getElementById("myModalAdd").style.display = "block";
             document.getElementById("adminNavItem").click();
@@ -342,7 +379,11 @@ async function gestisciClic(event) {
 
               const ButtonDelete = document.createElement("button");
               ButtonDelete.classList.add("rigth");
-              ButtonDelete.textContent = "Delete";
+              ButtonDelete.style.backgroundImage = 'url(./img/delete.jpg)';
+              ButtonDelete.style.backgroundSize = 'cover';
+              ButtonDelete.style.width = '25px';
+              ButtonDelete.style.height = '25px';
+
               ButtonDelete.addEventListener("click", function () {
                 $.ajax({
                   method: "DELETE",
@@ -369,8 +410,12 @@ async function gestisciClic(event) {
               });
 
               const ButtonModPc = document.createElement("button");
-              ButtonModPc.textContent = "Modify";
+              ButtonModPc.style.backgroundImage = 'url(./img/pencil.png)';
+              ButtonModPc.style.backgroundSize = 'cover';
+              ButtonModPc.style.width = '25px';
+              ButtonModPc.style.height = '25px';
               ButtonModPc.classList.add("Lessrigth");
+
               ButtonModPc.addEventListener("click", function () {
                 document.getElementById("myModalAddProgram").style.display =
                   "block";
@@ -385,7 +430,10 @@ async function gestisciClic(event) {
               divLab.appendChild(divPc);
             }
             const ButtonAdd = document.createElement("button");
-            ButtonAdd.textContent = "Add";
+            ButtonAdd.style.backgroundImage = 'url(./img/add.jpg)';
+            ButtonAdd.style.backgroundSize = 'cover';
+            ButtonAdd.style.width = '25px';
+            ButtonAdd.style.height = '25px';
             ButtonAdd.addEventListener("click", function () {
               $.ajax({
                 method: "POST",
@@ -410,6 +458,7 @@ async function gestisciClic(event) {
                 }
               });
             });
+
             divLab.appendChild(ButtonAdd);
             content.appendChild(divLab);
           }
@@ -419,7 +468,7 @@ async function gestisciClic(event) {
             url: "http://localhost:5033/Reservation/Reservation",
             success: function (response) {
               const div = document.createElement("div");
-              div.textContent = "Reservations";
+              div.textContent = "Reservations:";
               for (const reservation of response) {
                 const single = document.createElement("div");
                 single.textContent =
@@ -432,8 +481,12 @@ async function gestisciClic(event) {
                   reservation.hour;
 
                 const buttonDel = document.createElement("button");
-                buttonDel.textContent = "Delete";
+                buttonDel.style.backgroundImage = 'url(./img/delete.jpg)';
+                buttonDel.style.backgroundSize = 'cover';
+                buttonDel.style.width = '25px';
+                buttonDel.style.height = '25px';
                 buttonDel.classList.add("rigth");
+
                 buttonDel.addEventListener("click", function () {
                   const TokenString = sessionStorage.getItem("token");
                   const GetToken = JSON.parse(TokenString);
@@ -469,6 +522,9 @@ async function gestisciClic(event) {
                 single.appendChild(buttonDel);
                 div.appendChild(single);
               }
+              const br = document.createElement('br');
+
+              content.appendChild(br);
               content.appendChild(div);
             },
             error: function(xhr) {
@@ -534,8 +590,12 @@ async function gestisciClic(event) {
               reservation.hour;
 
             const buttonDel = document.createElement("button");
-            buttonDel.textContent = "Delete";
+            buttonDel.style.backgroundImage = 'url(./img/delete.jpg)';
+            buttonDel.style.backgroundSize = 'cover';
+            buttonDel.style.width = '25px';
+            buttonDel.style.height = '25px';
             buttonDel.classList.add("rigth");
+
             buttonDel.addEventListener("click", function () {
               $.ajax({
                 method: "Delete",
@@ -565,11 +625,15 @@ async function gestisciClic(event) {
                 }
               });
             });
-
+            
             res.appendChild(buttonDel);
             reservations.appendChild(res);
           }
+          const br = document.createElement('br');
+          const br2 = document.createElement('br');
 
+          Profile.appendChild(br);
+          Profile.appendChild(br2);
           Profile.appendChild(reservations);
         },
         error: function(xhr) {
@@ -586,6 +650,9 @@ async function gestisciClic(event) {
         }
       });
       break;
+      case "logout":
+        logout();
+        break;
     default:
       break;
   }
@@ -792,19 +859,3 @@ function selezionaData() {
   dateInput.value = giorno + "/" + mese + "/" + anno;
   document.getElementById("calendar").style.display = "none";
 }
-
-/*function encrypt(data) {
-  const key = "token";
-  const cipher = crypto.createCipher('aes-256-cbc', key);
-  let encryptedData = cipher.update(data, 'utf-8', 'hex');
-  encryptedData += cipher.final('hex');
-  return encryptedData;
-}
-
-function decrypt(encryptedData) {
-  const key = "token";
-  const decipher = crypto.createDecipher('aes-256-cbc', key);
-  let decryptedData = decipher.update(encryptedData, 'hex', 'utf-8');
-  decryptedData += decipher.final('utf-8');
-  return decryptedData;
-}*/
