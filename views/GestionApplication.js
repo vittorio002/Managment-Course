@@ -46,6 +46,7 @@ function showApplication() {
 async function gestisciClic(event) {
   const targetId = event.target.id;
 
+  //gestion switch on tabs
   switch (targetId) {
     case "userNavItem":
       //User Interface
@@ -93,44 +94,49 @@ async function gestisciClic(event) {
 
       search.id = "search";
       search.addEventListener("click", async function () {
-        divLabs.innerHTML = "";
-        await SerachFreePc(dateInput.value, inputHour.value)
-        .then((response =>{
-          for (const lab of response) {
-            const divLab = document.createElement("div");
-            divLab.textContent = lab.name;
-            for (const computer of lab.computers) {
-              const divPc = document.createElement("div");
-              divPc.textContent =
-                computer.name +
-                " | Id: " +
-                computer.id +
-                " | Status: " +
-                computer.status +
-                " | Program: " +
-                computer.program;
+        if(dateInput.value == ""){
+          alert("fill in all fields");
+        }
+        else
+        {
+          divLabs.innerHTML = "";
+          await SerachFreePc(dateInput.value, inputHour.value)
+            .then((response =>{
+              for (const lab of response) {
+                const divLab = document.createElement("div");
+                divLab.textContent = lab.name;
+                for (const computer of lab.computers) {
+                  const divPc = document.createElement("div");
+                  divPc.textContent =
+                    computer.name +
+                    " | Id: " +
+                    computer.id +
+                    " | Status: " +
+                    computer.status +
+                    " | Program: " +
+                    computer.program;
 
-              const ButtonAdd = document.createElement("button");
-              ButtonAdd.style.backgroundImage = 'url(./img/reserve.png)';
-              ButtonAdd.style.backgroundSize = 'cover';
-              ButtonAdd.style.width = '25px';
-              ButtonAdd.style.height = '25px';
+                  const ButtonAdd = document.createElement("button");
+                  ButtonAdd.style.backgroundImage = 'url(./img/reserve.png)';
+                  ButtonAdd.style.backgroundSize = 'cover';
+                  ButtonAdd.style.width = '25px';
+                  ButtonAdd.style.height = '25px';
 
-              ButtonAdd.addEventListener("click", async function () {
-                const TokenString = sessionStorage.getItem("token");
-                const GetToken = JSON.parse(TokenString);
-                await SendReservation(GetToken.email, computer.name, inputHour.value, dateInput.value);
-              });
+                  ButtonAdd.addEventListener("click", async function () {
+                    const TokenString = sessionStorage.getItem("token");
+                    const GetToken = JSON.parse(TokenString);
+                    await SendReservation(GetToken.email, computer.name, inputHour.value, dateInput.value);
+                  });
 
-              divPc.appendChild(ButtonAdd);
-              divLab.appendChild(divPc);
-            }
+                  divPc.appendChild(ButtonAdd);
+                  divLab.appendChild(divPc);
+                }
 
-            divLabs.appendChild(divLab);
-            content.appendChild(divLabs);
-          }
-        }));
-                
+                divLabs.appendChild(divLab);
+                content.appendChild(divLabs);
+              }
+          }));
+         }       
       });
       const br = document.createElement('br');
       const br2 = document.createElement('br');
