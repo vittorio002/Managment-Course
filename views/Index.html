@@ -6,6 +6,10 @@
     <title>Course</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="./functions.js"></script>
+    <script src="./Calls/Usercall.js"></script>
+    <script src="./Calls/LabCall.js"></script>
+    <script src="./Calls/ReservationCall.js"></script>
     <script src="./GestionApplication.js"></script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -60,21 +64,25 @@
       <div class="center" id="content"></div>
 
       <!--Modify Modal-->
-      <div id="myModal">
+      <div  id="myModal">
         <div id="modalContent">
             <span class="close" onclick="closeModal()">&times;</span>
             <form id="myForm" onsubmit="submitForm(event)">
-
-                <label class="text-black" for="name">Name:</label>
-                <input type="text" id="name" name="name"><br>
-    
-                <label class="text-black" for="email">Email:</label>
-                <input type="text" id="email" name="email" readonly><br>
-
-                <label class="text-black" for="role">Role:</label>
-                <input type="text" id="role" name="role"><br>
-    
-                <button style="background-image: url(./img/check.png); background-size: cover; width: 25px; height: 25px;" onclick="Modify()"></button>
+              <table>
+                <tr>
+                  <td><label class="text-black" for="name">Name:</label></td>
+                  <td><input type="text" id="name" name="name"><br></td>
+                </tr>
+                <tr>
+                  <td><label class="text-black" for="email">Email:</label></td>
+                  <td><input type="text" id="email" name="email" readonly><br></td>
+                </tr>
+                <tr>
+                  <td><label class="text-black" for="role">Role:</label></td>
+                  <td> <input type="text" id="role" name="role"><br></td>
+                </tr>
+              </table>
+                <button class="r" style="background-image: url(./img/check.png); background-size: cover; width: 25px; height: 25px;" onclick="Modify()"></button>
             </form>
         </div>
     </div>
@@ -84,17 +92,21 @@
       <div id="modalContent">
           <span class="close" onclick="closeModal()">&times;</span>
           <form id="myForm" onsubmit="submitForm(event)">
-
-              <label class="text-black" for="name">Name:</label>
-              <input type="text" id="nameAdd" name="name"><br>
-  
-              <label class="text-black" for="email">Email:</label>
-              <input type="text" id="emailAdd" name="email"><br>
-
-              <label class="text-black" for="role">Password:</label>
-              <input type="password" id="passwordAdd" name="password"><br>
-  
-              <button style="background-image: url(./img/check.png); background-size: cover; width: 25px; height: 25px;" onclick="Add()"></button>
+              <table>
+                <tr>
+                  <td><label class="text-black" for="name">Name:</label></td>
+                  <td><input type="text" id="nameAdd" name="name"><br></td>
+                </tr>
+                <tr>
+                  <td><label class="text-black" for="email">Email:</label></td>
+                  <td><input type="text" id="emailAdd" name="email"><br></td>
+                </tr>
+                <tr>
+                  <td><label class="text-black" for="role">Password:</label></td>
+                  <td><input type="password" id="passwordAdd" name="password"><br></td>
+                </tr>
+              </table>
+              <button class="r" style="background-image: url(./img/check.png); background-size: cover; width: 25px; height: 25px;" onclick="Add()"></button>
           </form>
       </div>
   </div>
@@ -104,20 +116,25 @@
     <div id="modalContent">
         <span class="close" onclick="closeModal()">&times;</span>
         <form id="myForm" onsubmit="submitForm(event)">
-
-          <label class="text-black" for="namePc">Name:</label>
-            <input type="text" id="namePc" name="namePc"><br>
-
-            <label class="text-black" for="IdPc">Id:</label>
-            <input type="text" id="IdPc" name="IdPc" readonly><br>
-
-            <label class="text-black" for="status">Status:</label>
-            <input type="text" id="status" name="status"><br>
-
-            <label class="text-black" for="programs">Progrms:</label>
-            <input type="text" id="programs" name="programs"><br>
-
-            <button style="background-image: url(./img/check.png); background-size: cover; width: 25px; height: 25px;" onclick="ModifyPc()"></button>
+          <table>
+            <tr>
+              <td><label class="text-black" for="namePc">Name:</label></td>
+              <td><input type="text" id="namePc" name="namePc"><br></td>
+            </tr>
+            <tr>
+              <td><label class="text-black" for="IdPc">Id:</label></td>
+              <td><input type="text" id="IdPc" name="IdPc" readonly><br></td>
+            </tr>
+            <tr>
+              <td><label class="text-black" for="status">Status:</label></td>
+              <td><input type="text" id="status" name="status"><br></td>
+            </tr>
+            <tr>
+              <td><label class="text-black" for="programs">Progrms:</label></td>
+              <td><input type="text" id="programs" name="programs"><br></td>
+            </tr>
+          </table>
+            <button class="r" style="background-image: url(./img/check.png); background-size: cover; width: 25px; height: 25px;" onclick="ModifyPc()"></button>
         </form>
     </div>
 </div>

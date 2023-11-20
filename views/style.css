@@ -72,6 +72,7 @@
     padding: 20px;
     border: 1px solid #888;
     width: 20%;
+    height: 30%;
 }
 
 .close {
@@ -108,4 +109,9 @@
     border: 1px solid #ccc;
     padding: 10px;
     z-index: 1000;
+  }
+
+  .r{
+    float: right;
+    margin-bottom: 20%;
   }

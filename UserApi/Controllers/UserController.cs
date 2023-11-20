@@ -6,6 +6,7 @@ namespace UserApi.Controllers
 {
     [ApiController]
     [Route("Userapi/[controller]")]
+    [TokenValidation]
     public class UserController : ControllerBase
     {
         private static List<User> _users = new List<User>();//users list

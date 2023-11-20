@@ -1,10 +1,15 @@
-I thought about the structure of this project with different microservices, obviously there is the interaction part with the user, the authentication application, the laboratory, computer and booking management application and finally an application that offers a data storage service.
-my project is therefore divided into a frontrnd and three web api, I created a dll library in order to provide the classes between the services with the data storage service without creating references between the applications.
-As soon as the user enters the site the login page is shown, if the user enters the correct credentials the application will take care of making two calls to the user in the authentication controller, the first takes care of sending the email and having response is the user's nonce which is generated and stored in the user at each login, the second call, after having concatenated the password with the nonce, sends the credentials to the backend which will verify that they are correct and then generate the token and send it to the frontend.
-The token is made up of the user's name, his email and his list of roles, each user has his own list of roles so that each user can have multiple roles as they have different importance and in case they are added new features to the application, the structure of the user and data storage on the backend side will not change.
-With the list of roles the page then checks what the user's roles are and shows the different tabs that have the different functions, the classic ones for the user for booking,
-those of the admin for modifying users and those of the lab manager for modifying laboratories, computers and reservations.
-The token is then saved in the session and remains there until it expires or you log out.
-At each user interaction with the page in communication with the backend, the interceptor will come into play which will intercept the backend calls and before starting them it will verify that the token is still valid, comparing the date of creation converted into milliseconds, with the current one, if it is still valid, update the creation date with the verification date.
+I thought that the best structure of this project is with the implementation of different microservices, in particular i divided the logic in the follows microservice:
+- the authentication/user service, 
+- the laboratory, computer and booking management service
+- data storage service.
+The project is therefore divided into a frontend and three backend use REST API tecnology, Furthermore i did created a dll library in order to provide the classes in common between the services without creating references between the applications.
+The fisrt page showed to the user is the login page, after the user enters the correct credentials the frontend makes two calls.With the first gets the user's nonce, after checked the existence of the username in the database. With the second, sends the password plus the nonce string to the user authentication controller, the service will verify that they are correct and then generate the token and send it back to the frontend, for the future calls.
+
+The token is made up of the user's name, his email, his list of roles and the date of creation trasformed in milliseconds.
+The token is saved in the session and remains there until it expires or you log out.
+At each user interaction with the page that pass the token at backend, the interceptor will come into play which will intercept the backend calls and before starting them it will verify that the token is still valid, comparing the creation date with the current one, if is not pass 5 minutes and if it is still valid, updates the creation date with the verification date and continues with the calls.
+
+As mentioned, in the token there is a list of user roles, the frontend looks at the roles and based on them shows tabs corresponding to the roles
+
 The reservations made by the user are recorded in the data storage service in a json with the name of the person who booked, the name of the PC, the date and time, it is also saved on the computer, in a list where there are only the dates and times of all reservations.
 In fact, before booking, the user must enter a date and time in which he wants to book so as to be able to take from the backend only the computers on the list that are not already occupied that day at that time.
